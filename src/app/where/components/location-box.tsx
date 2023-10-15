@@ -1,10 +1,8 @@
-import Image from 'next/image'
-
 type Props = {
   name: string
 }
 
-export default function Home({ name }: Props) {
+export default function LocationBox({ name }: Props) {
   return (
     <div className='rounded-xl'>
       {name}
