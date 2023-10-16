@@ -1,7 +1,7 @@
 'use client'
 
 import Toolbar from "../../common/components/toolbar/toolbar"
-import { Button, Progress, Radio, Space } from "antd"
+import { Button, Progress, Radio, RadioChangeEvent, Space } from "antd"
 import Head from "next/head"
 import Link from "next/link"
 import formData from "./form.json"
@@ -30,7 +30,7 @@ export default function Screening() {
     setCurrentQuestionIndex(currentQuestionIndex - 1)
   }
 
-  const onAnswerSelected = (e: { target: { value: SetStateAction<null> } }) => {
+  const onAnswerSelected = (e: RadioChangeEvent) => {
     setSelectedAnswer(e.target.value);
   }
   const questionData = formData[currentQuestionIndex]
