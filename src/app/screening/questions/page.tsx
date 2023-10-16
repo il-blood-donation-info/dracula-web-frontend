@@ -30,7 +30,7 @@ export default function Screening() {
     setCurrentQuestionIndex(currentQuestionIndex - 1)
   }
 
-  const onAnswerSelected = (e: RadioChangeEvent) => {
+  const onAnswerSelected = (e) => {
     setSelectedAnswer(e.target.value);
   }
   const questionData = formData[currentQuestionIndex]
