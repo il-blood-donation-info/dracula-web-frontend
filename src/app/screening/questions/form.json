@@ -1,0 +1,27 @@
+[
+  {
+    "questionText": "מהו מינך?",
+    "answers": [
+      {
+        "answerText": "זכר"
+      },
+      {
+        "answerText": "נקבה"
+      }
+    ]
+  },
+  {
+    "questionText": "מהו גילך?",
+    "answers": [
+      {
+        "answerText": "מתחת ל-17",
+        "isTerminal": true
+      },
+      {
+        "answerText": "עד 18",
+        "commentsInTheEnd": "link to apotropus doc: https: //blabla.com",
+        "warning": "תצטרך הסכמת הורים"
+      }
+    ]
+  }
+]
