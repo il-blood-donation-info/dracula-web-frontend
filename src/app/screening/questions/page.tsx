@@ -5,7 +5,7 @@ import { Button, Progress, Radio, Space } from "antd"
 import Head from "next/head"
 import Link from "next/link"
 import formData from "./form.json"
-import { useEffect, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 import size from 'lodash/size'
 import isEmpty from 'lodash/isEmpty'
 
@@ -30,7 +30,7 @@ export default function Screening() {
     setCurrentQuestionIndex(currentQuestionIndex - 1)
   }
 
-  const onAnswerSelected = (e) => {
+  const onAnswerSelected = (e: { target: { value: SetStateAction<null> } }) => {
     setSelectedAnswer(e.target.value);
   }
   const questionData = formData[currentQuestionIndex]
