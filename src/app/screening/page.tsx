@@ -1,12 +1,19 @@
+'use client'
+
 import { Button } from "antd"
 import Head from "next/head"
 import Toolbar from "../common/components/toolbar/toolbar"
 import Link from "next/link"
+import { useContext, useEffect } from "react";
+import { GlobalStateContext, INIT_SCREENING } from "../global-state"
 
-// TODO move texts into i18n data
-/* eslint-disable react/no-unescaped-entities */
+export default function Screening() {
+  const [state, dispatch] = useContext(GlobalStateContext) as any
 
-export default function Who() {
+  useEffect(() => {
+    dispatch({ type: INIT_SCREENING })
+  }, [])
+
   return (
     <div className="h-full">
       <Head>
