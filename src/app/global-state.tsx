@@ -56,6 +56,7 @@ export const GlobalStateContext = React.createContext(initialState);
 function GlobalState({ children }: any) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
+    // @ts-ignore
     <GlobalStateContext.Provider value={[state, dispatch]}>
       {children}
     </GlobalStateContext.Provider>
