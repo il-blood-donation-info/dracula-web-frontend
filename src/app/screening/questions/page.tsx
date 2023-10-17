@@ -29,10 +29,12 @@ export default function Screening() {
         router.push('/screening/conclusion')
       }
       const answerData = prevQuestion.answers.find(({ id }) => id === answerId)
+      // @ts-ignore
       if (answerData.isTerminal) {
         dispatch({
           type: SCREENING_CONCLUDE, payload: {
             status: ScreeningConclusion.Rejected,
+            // @ts-ignore
             comments: [answerData.terminalMessage],
           }
         })
