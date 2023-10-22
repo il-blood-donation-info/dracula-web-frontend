@@ -2,7 +2,7 @@ const formData = {
   recentDonation: {
     questionText: "האם תרמת דם בשלושת החודשים האחרונים?",
     isFirst: true,
-    next: "intercourse",
+    next: "age",
     answers: [
       {
         id: "recentDonation.yes",
