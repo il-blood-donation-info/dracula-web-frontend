@@ -30,7 +30,7 @@ export default function Screening() {
   const onAnswerSelected = (answerId: string) => {
     console.log('debug ansse', questionData, answerId)
     dispatch({ type: SCREENING_POST_ANSWER, payload: { questionId: currentQuestionId, answerId } })
-    const answerData = questionData.answers.find(({ id }) => id === answerId)
+    const answerData = questionData.answers.find(({ id }: { id: string }) => id === answerId)
     if (answerData.isTerminal) {
       dispatch({
         type: SCREENING_CONCLUDE, payload: {
