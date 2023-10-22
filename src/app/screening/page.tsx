@@ -12,7 +12,7 @@ export default function Screening() {
 
   useEffect(() => {
     dispatch({ type: INIT_SCREENING })
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="h-full">

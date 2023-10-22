@@ -4,62 +4,50 @@ import Toolbar from "../../common/components/toolbar/toolbar"
 import { Button, Progress, Radio, RadioChangeEvent, Space } from "antd"
 import Head from "next/head"
 import formData from "./form"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import size from 'lodash/size'
-import isEmpty from 'lodash/isEmpty'
+import findKey from 'lodash/findKey'
 import { useRouter } from 'next/navigation'
 
 import { GlobalStateContext, SCREENING_CONCLUDE, SCREENING_POST_ANSWER } from "../../global-state"
 import { ScreeningConclusion } from "@/app/common/constants/screening"
 
+const firstQuestionId = findKey(formData, 'isFirst')
+
 export default function Screening() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [currentQuestionId, setCurrentQuestionId] = useState(firstQuestionId)
   const [{ screening: { answers } }, dispatch] = useContext(GlobalStateContext) as any
   const router = useRouter()
 
-  const questionData = formData[currentQuestionIndex]
+  // @ts-ignore
+  const questionData = formData[currentQuestionId]
   const selectedAnswer = answers?.[questionData?.id]?.answer
 
-  useEffect(() => {
-    const prevQuestion = formData[currentQuestionIndex - 1]
-    if (prevQuestion) {
-      const answerId = answers[prevQuestion.id].answer
-      if (currentQuestionIndex === size(formData)) {
-        dispatch({ type: SCREENING_CONCLUDE, payload: { status: ScreeningConclusion.Approved } })
-        router.push('/screening/conclusion')
-      }
-      const answerData = prevQuestion.answers.find(({ id }) => id === answerId)
-      // @ts-ignore
-      if (answerData.isTerminal) {
-        dispatch({
-          type: SCREENING_CONCLUDE, payload: {
-            status: ScreeningConclusion.Rejected,
-            // @ts-ignore
-            comments: [answerData.terminalMessage],
-          }
-        })
-        router.push('/screening/conclusion')
-      }
-    }
-  }, [currentQuestionIndex])
-
-  const onNextClicked = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1)
-  }
-
   const onPrevClicked = () => {
-    setCurrentQuestionIndex(currentQuestionIndex - 1)
+    setCurrentQuestionId(questionData.prev)
   }
 
-  if (currentQuestionIndex === size(formData)) {
-    return (<div>סיימנו!</div>)
+  const onAnswerSelected = (answerId: string) => {
+    console.log('debug ansse', questionData, answerId)
+    dispatch({ type: SCREENING_POST_ANSWER, payload: { questionId: currentQuestionId, answerId } })
+    const answerData = questionData.answers.find(({ id }) => id === answerId)
+    if (answerData.isTerminal) {
+      dispatch({
+        type: SCREENING_CONCLUDE, payload: {
+          status: ScreeningConclusion.Rejected,
+          // @ts-ignore
+          comments: [answerData.comment],
+        }
+      })
+      router.push('/screening/conclusion')
+    } else if (questionData.isFinal) {
+      dispatch({ type: SCREENING_CONCLUDE, payload: { status: ScreeningConclusion.Approved } })
+      router.push('/screening/conclusion')
+    } else {
+      setCurrentQuestionId(answerData.next || questionData.next)
+    }
   }
-
-  const onAnswerSelected = (e: RadioChangeEvent) => {
-    const answerId = e.target.value
-    dispatch({ type: SCREENING_POST_ANSWER, payload: { questionId: questionData.id, answerId } })
-  }
-
+console.log('debug prog', answers)
   return (
     <div className="h-full">
       <Head>
@@ -68,37 +56,34 @@ export default function Screening() {
       <Toolbar />
       <div className="flex flex-col justify-between h-full">
         <div>
-          <Progress percent={Math.round(currentQuestionIndex / size(formData) * 100)} />
+          <Progress percent={Math.round(size(answers) / size(formData) * 100)} />
           <p className="text-lg">
             {questionData.questionText}
           </p>
           <p className="text-base">
             {questionData.description}
           </p>
-          <Radio.Group onChange={onAnswerSelected} value={selectedAnswer}>
-            <Space direction="vertical">
-              {
-                questionData.answers.map(({ id, answerText }) => (
-                  <Radio key={id} value={id} className="text-base">{answerText}</Radio>
-                ))
-              }
-            </Space>
-          </Radio.Group>
+          <div className="flex flex-wrap justify-between gap-4 mt-4">
+            {
+              questionData.answers.map(({ id, answerText }: { id: string, answerText: string }) => (
+                <Button
+                  key={id}
+                  onClick={() => onAnswerSelected(id)}
+                  className={`${id === selectedAnswer ? 'border-red' : ''} w-full h-16 text-base whitespace-normal`}
+                >
+                  {answerText}
+                </Button>
+              ))
+            }
+          </div>
         </div>
         <div className="h-1/6 flex flex justify-center items-center">
           <Button
-            disabled={currentQuestionIndex === 0}
+            disabled={currentQuestionId === firstQuestionId}
             onClick={onPrevClicked}
             className="h-12 rounded-3xl text-base w-full ml-4"
           >
-            קודם
-          </Button>
-          <Button
-            disabled={isEmpty(selectedAnswer)}
-            onClick={onNextClicked}
-            className="h-12 bg-red-400 text-white rounded-3xl text-base w-full"
-          >
-            הבא
+            שאלה קודמת
           </Button>
         </div>
       </div>

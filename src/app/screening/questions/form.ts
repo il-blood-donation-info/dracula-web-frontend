@@ -1,13 +1,14 @@
-const formData = [
-  {
-    id: "recentDonation",
+const formData = {
+  recentDonation: {
     questionText: "האם תרמת דם בשלושת החודשים האחרונים?",
+    isFirst: true,
+    next: "intercourse",
     answers: [
       {
         id: "recentDonation.yes",
         answerText: "כן",
         isTerminal: true,
-        terminalMessage:
+        comment:
           'המינימום בין תרומות דם על פי קריטריוני מד"א הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
       },
       {
@@ -16,22 +17,21 @@ const formData = [
       },
     ],
   },
-  {
-    id: "age",
+  age: {
     questionText: "מהו גילך?",
+    prev: 'recentDonation',
+    next: "gender",
     answers: [
       {
         id: "age.under17",
         answerText: "מתחת ל-17",
         isTerminal: true,
-        terminalMessage: "הגיל המינימלי לתרומת דם הינו 17.",
+        comment: "הגיל המינימלי לתרומת דם הינו 17.",
       },
       {
         id: "age.17to18",
         answerText: "17 עד 18",
-        commentsInTheEnd: "link to apotropus doc: https://blabla.com",
-        warning:
-          "שים לב, הנך מחויב בהצהרת הורים, קישור להצהרת הורים/אפוטרופוס יופיע בעמוד האחרון של הטופס.",
+        comment: "link to apotropus doc: https://blabla.com",
       },
       {
         id: "age.18to59",
@@ -40,40 +40,35 @@ const formData = [
       {
         id: "age.60to64",
         answerText: "60 עד 64",
-        extraQuestions: [
-          {
-            id: "age.60to64.firstTime",
-            questionText: "האם זוהי תרומת הדם הראשונה שלך?",
-            answers: [
-              {
-                id: "age.60to64.firstTime.yes",
-                answerText: "כן",
-                commentsInTheEnd:
-                  "link to apotropus doc: https://blablabla.com", //there is no actual doc at the end, only a reminder to provide one
-                warning:
-                  "שים לב, ידרש אישור מהרופא המטפל לעמידה במדדים לקבלת תורמים.",
-              },
-              {
-                id: "age.60to64.firstTime.no",
-                answerText: "לא",
-              },
-            ],
-          },
-        ],
+        next: "age.60to64.firstTime",
       },
       {
         id: "age.65up",
         answerText: "65 ומעלה",
-        commentsInTheEnd: "link to apotropus doc: https://blablabla.com", //there is no actual doc at the end, only a reminder to provide one + whstsapp group link
-        warning:
-          "שים לב, ידרש אישור מהרופא המטפל לעמידה במדדים לקבלת תורמים, וכן קריטריונים נוספים באתר ההתרמה.", //the extra criteria - is the doner expected to check them up on the site? what are they? should be handled\shown in the app
+        comment: "link to apotropus doc: https://blablabla.com",
       },
     ],
   },
-
-  {
-    id: "gender",
+  'age.60to64.firstTime': {
+    questionText: "האם זוהי תרומת הדם הראשונה שלך?",
+    prev: 'age',
+    next: "gender",
+    answers: [
+      {
+        id: "age.60to64.firstTime.yes",
+        answerText: "כן",
+        comment: "link to apotropus doc: https://blablabla.com",
+      },
+      {
+        id: "age.60to64.firstTime.no",
+        answerText: "לא",
+      },
+    ],
+  },
+  gender: {
     questionText: "מהו מינך?",
+    prev: 'age',
+    next: "conditions",
     answers: [
       {
         id: "gender.male",
@@ -82,57 +77,56 @@ const formData = [
       {
         id: "gender.female",
         answerText: "נקבה",
-        extraQuestions: [
-          {
-            id: "pregnant",
-            questionText: "האם הינך בהריון כעת?",
-            answers: [
-              {
-                id: "pregnant.yes",
-                answerText: "כן",
-                isTerminal: true,
-                terminalMessage:
-                  "אין באפשרותך לתרום כעת. מתן תרומת דם עשוי לסכן את בריאותך.",
-              },
-              {
-                id: "pregnant.no",
-                answerText: "לא",
-              },
-            ],
-          },
-          {
-            id: "birth",
-            questionText: "האם ילדת בחצי שנה האחרונה?",
-            answers: [
-              {
-                id: "birth.yes",
-                answerText: "כן",
-                isTerminal: true,
-                terminalMessage:
-                  "אין באפשרותך לתרום כעת. מתן תרומת דם עשוי לסכן את בריאותך.",
-              },
-              {
-                id: "birth.no",
-                answerText: "לא",
-              },
-            ],
-          },
-        ],
+        next: "pregnant",
       },
     ],
   },
-  {
-    id: "conditions",
+  pregnant: {
+    questionText: "האם הינך בהריון כעת?",
+    prev: 'gender',
+    next: "birth",
+    answers: [
+      {
+        id: "pregnant.yes",
+        answerText: "כן",
+        isTerminal: true,
+        comment: "אין באפשרותך לתרום כעת. מתן תרומת דם עשוי לסכן את בריאותך.",
+      },
+      {
+        id: "pregnant.no",
+        answerText: "לא",
+      },
+    ],
+  },
+  birth: {
+    questionText: "האם ילדת בחצי שנה האחרונה?",
+    prev: 'pregnant',
+    next: "conditions",
+    answers: [
+      {
+        id: "birth.yes",
+        answerText: "כן",
+        isTerminal: true,
+        comment: "אין באפשרותך לתרום כעת. מתן תרומת דם עשוי לסכן את בריאותך.",
+      },
+      {
+        id: "birth.no",
+        answerText: "לא",
+      },
+    ],
+  },
+  conditions: {
     questionText: "האם הינך סובל מאחד מהמצבים הבאים?",
     description:
       " בעיה לבבית או הפרעות בקצב הלב הדורשות טיפול תרופתי, המופיליה או מחלת הנפילה (אפילפסיה) המטופלת בטיפול תרופתי או שחוו התקף ב-5 השנים האחרונות",
+    prev: 'birth',
+    next: "antibiotics",
     answers: [
       {
         id: "conditions.yes",
         answerText: "כן",
         isTerminal: true,
-        terminalMessage:
-          "אין באפשרותך לתרום. מתן תרומת דם עשויה לסכן את בריאותך.",
+        comment: "אין באפשרותך לתרום. מתן תרומת דם עשויה לסכן את בריאותך.",
       },
       {
         id: "conditions.no",
@@ -140,9 +134,10 @@ const formData = [
       },
     ],
   },
-  {
-    id: "antibiotics",
+  antibiotics: {
     questionText: "האם טופלת באנטיביוטיקה בחודש האחרון?",
+    prev: 'conditions',
+    next: "teeth",
     answers: [
       {
         id: "antibiotics.yesAndHealed",
@@ -153,7 +148,7 @@ const formData = [
         answerText:
           "כן, טרם סיימתי את הטיפול ואני עדיין נוטל את האנטיביוטיקה / לא החלמתי",
         isTerminal: true,
-        terminalMessage:
+        comment:
           "אין באפשרותך לתרום כעת, עליך לסיים את הטיפול לפני מתן תרומת דם.",
       },
       {
@@ -162,11 +157,12 @@ const formData = [
       },
     ],
   },
-  {
-    id: "teeth",
+  teeth: {
     questionText: "האם עברת טיופל שיניים לאחרונה?",
     description:
       "האם עברת אחד או יותר מהטיפולים הבאים: שיננית ב-24 שעות האחרונות, טיפול שורש/עקירת שן בשבוע האחרון, השתלת שיניים בחודש האחרון.",
+    prev: 'antibiotics',
+    next: "hepatitis",
     answers: [
       {
         id: "teeth.yes",
@@ -179,30 +175,15 @@ const formData = [
       },
     ],
   },
-  {
-    id: "hepatitis",
+  hepatitis: {
     questionText: " האם הינך חולה או חלית בעבר בדלקת כבד (צהבת)?",
+    prev: 'teeth',
+    next: "vaccine",
     answers: [
       {
         id: "hepatitis.A",
         answerText: "כן, סוג A",
-        extraQuestions: [
-          {
-            id: "hepatitis.A.notRecent",
-            questionText: "האם החלמת וחלפה שנה ממועד ההחלמה?",
-            answers: [
-              {
-                id: "hepatitis.A.notRecent.Yes",
-                answerText: "כן",
-              },
-              {
-                id: "hepatitis.A.notRecent.No",
-                answerText: "לא",
-                isTerminal: true,
-              },
-            ],
-          },
-        ],
+        next: "hepatitis.A.notRecent",
       },
       {
         id: "hepatitis.BC",
@@ -212,23 +193,7 @@ const formData = [
       {
         id: "hepatitis.NA",
         answerText: "כן, מסיבה לא ידוע",
-        extraQuestions: [
-          {
-            id: "hepatitis.NA.notRecent",
-            questionText: "האם החלמת וחלפו שנתיים ממועד ההחלמה?",
-            answers: [
-              {
-                id: "hepatitis.NA.notRecent.yes",
-                answerText: "כן",
-              },
-              {
-                id: "hepatitis.NA.notRecent.no",
-                answerText: "לא",
-                isTerminal: true,
-              },
-            ],
-          },
-        ],
+        next: "hepatitis.NA.notRecent",
       },
       {
         id: "hepatitis.no",
@@ -236,11 +201,44 @@ const formData = [
       },
     ],
   },
-  {
-    id: "vaccine",
+  "hepatitis.A.notRecent": {
+    questionText: "האם החלמת וחלפה שנה ממועד ההחלמה?",
+    prev: 'hepatitis',
+    next: "vaccine",
+    answers: [
+      {
+        id: "hepatitis.A.notRecent.Yes",
+        answerText: "כן",
+      },
+      {
+        id: "hepatitis.A.notRecent.No",
+        answerText: "לא",
+        isTerminal: true,
+      },
+    ],
+  },
+  'hepatitis.NA.notRecent': {
+    questionText: "האם החלמת וחלפו שנתיים ממועד ההחלמה?",
+    prev: 'hepatitis',
+    next: "vaccine",
+    answers: [
+      {
+        id: "hepatitis.NA.notRecent.yes",
+        answerText: "כן",
+      },
+      {
+        id: "hepatitis.NA.notRecent.no",
+        answerText: "לא",
+        isTerminal: true,
+      },
+    ],
+  },
+  vaccine: {
     questionText: "האם קיבלת חיסון לאחרונה?",
     description:
       "האם קיבלת חיסון לאחת מהמחלות הבאות בחודש האחרון: אדמת, חצבת, חזרת, אבעבעות רוח, קדחת צהובה?",
+    prev: 'hepatitis',
+    next: "asthma",
     answers: [
       {
         id: "vaccine.yes",
@@ -253,31 +251,15 @@ const formData = [
       },
     ],
   },
-  {
-    id: "asthma",
+  asthma: {
     questionText: "האם הינך חולה באסתמה?",
+    prev: 'vaccine',
+    next: "diabetes",
     answers: [
       {
         id: "asthma.yes",
         answerText: "כן",
-        extraQuestions: [
-          {
-            id: "asthma.yes.well",
-            questionText:
-              "האם הינך מרגיש טוב, ללא התקף בשבוע האחרון ולא נוטל סטרואידים בכדורים?",
-            answers: [
-              {
-                id: "asthma.yes.well.yes",
-                answerText: "כן",
-              },
-              {
-                id: "asthma.yes.well.no",
-                answerText: "לא",
-                isTerminal: true,
-              },
-            ],
-          },
-        ],
+        next: "asthma.yes.well",
       },
       {
         id: "asthma.no",
@@ -285,30 +267,32 @@ const formData = [
       },
     ],
   },
-  {
-    id: "diabetes",
+  "asthma.yes.well": {
+    questionText:
+      "האם הינך מרגיש טוב, ללא התקף בשבוע האחרון ולא נוטל סטרואידים בכדורים?",
+    prev: 'asthma',
+    next: "diabetes",
+    answers: [
+      {
+        id: "asthma.yes.well.yes",
+        answerText: "כן",
+      },
+      {
+        id: "asthma.yes.well.no",
+        answerText: "לא",
+        isTerminal: true,
+      },
+    ],
+  },
+  diabetes: {
     questionText: "האם הינך חולה בסכרת?",
+    prev: 'asthma',
+    next: "cancer",
     answers: [
       {
         id: "diabetes.yes",
         answerText: "כן",
-        extraQuestions: [
-          {
-            id: "diabetes.yes.balanced",
-            questionText: "האם הסכרת מאוזנת על ידי דיאטה או תרופות?",
-            answers: [
-              {
-                id: "diabetes.yes.balanced.yes",
-                answerText: "כן",
-              },
-              {
-                id: "diabetes.yes.balanced.no",
-                answerText: "לא / מטופל באינסולין",
-                isTerminal: true,
-              },
-            ],
-          },
-        ],
+        next: "diabetes.yes.balanced",
       },
       {
         id: "diabetes.no",
@@ -316,9 +300,26 @@ const formData = [
       },
     ],
   },
-  {
-    id: "cancer",
+  "diabetes.yes.balanced": {
+    questionText: "האם הסכרת מאוזנת על ידי דיאטה או תרופות?",
+    prev: 'diabetes',
+    next: "cancer",
+    answers: [
+      {
+        id: "diabetes.yes.balanced.yes",
+        answerText: "כן",
+      },
+      {
+        id: "diabetes.yes.balanced.no",
+        answerText: "לא / מטופל באינסולין",
+        isTerminal: true,
+      },
+    ],
+  },
+  "cancer": {
     questionText: "האם הינך חולה או שחלית בעבר במחלה ממאירה?",
+    prev: 'diabetes',
+    next: "anemia",
     answers: [
       {
         id: "cancer.yesVirus",
@@ -329,23 +330,7 @@ const formData = [
       {
         id: "cancer.yesOther",
         answerText: "כן, גידולים אחרים.",
-        extraQuestions: [
-          {
-            id: "cancer.yesOther.beated",
-            questionText: "האם חלפו 5 שנים לאחר השלמת הטיפול והחלמה מלאה?",
-            answers: [
-              {
-                id: "cancer.yesOther.beated.yes",
-                answerText: "כן",
-              },
-              {
-                id: "cancer.yesOther.beated.no",
-                answerText: "לא",
-                isTerminal: true,
-              },
-            ],
-          },
-        ],
+        next: "cancer.yesOther.beated",
       },
       {
         id: "cancer.no",
@@ -353,9 +338,26 @@ const formData = [
       },
     ],
   },
-  {
-    id: "anemia",
+  "cancer.yesOther.beated": {
+    questionText: "האם חלפו 5 שנים לאחר השלמת הטיפול והחלמה מלאה?",
+    prev: 'cancer',
+    next: "anemia",
+    answers: [
+      {
+        id: "cancer.yesOther.beated.yes",
+        answerText: "כן",
+      },
+      {
+        id: "cancer.yesOther.beated.no",
+        answerText: "לא",
+        isTerminal: true,
+      },
+    ],
+  },
+  "anemia": {
     questionText: "האם יש לך אנמיה או נטיה לדמם?",
+    prev: 'cancer',
+    next: "transfusion",
     answers: [
       {
         id: "anemia.yes",
@@ -368,9 +370,10 @@ const formData = [
       },
     ],
   },
-  {
-    id: "transfusion",
+  "transfusion": {
     questionText: "האם קיבלת עירוי דם או מרכיבי דם?",
+    prev: 'anemia',
+    next: "miscProcedures",
     answers: [
       {
         id: "transfusion.yesLately",
@@ -387,10 +390,11 @@ const formData = [
       },
     ],
   },
-  {
-    id: "miscProcedures",
+  "miscProcedures": {
     questionText:
       "האם ביצעת כתובת קעקוע, פירסינג, איפור קבוע או אנדוסקופיה עם ביופסיה?",
+    prev: 'transfusion',
+    next: "countriesLastYear",
     answers: [
       {
         id: "miscProcedures.yesLately",
@@ -407,10 +411,11 @@ const formData = [
       },
     ],
   },
-  {
-    id: "countriesLastYear",
+  "countriesLastYear": {
     questionText: "האם ביקרת בשנה האחרונה באחת מהמדינות הבאות?",
     description: "...", //where is the file with list of countries?
+    prev: 'miscProcedures',
+    next: "countriesLongStay",
     answers: [
       {
         id: "countriesLastYear.yes",
@@ -424,10 +429,11 @@ const formData = [
       },
     ],
   },
-  {
-    id: "countriesLongStay",
+  "countriesLongStay": {
     description: "...", //where is the file with list of countries?
     questionText: "האם שהית תקופה של מעל 6 חודשים באחת מהמדינות הבאות?",
+    prev: 'countriesLastYear',
+    next: "countriesAIDS",
     answers: [
       {
         id: "countriesLongStay.yesLately",
@@ -444,10 +450,11 @@ const formData = [
       },
     ],
   },
-  {
-    id: "countriesAIDS",
+  "countriesAIDS": {
     questionText: "האם שהית או ביקרת באחת מהמדינות הבאות?",
     description: "...", //where is the file with list of countries?
+    prev: 'countriesLongStay',
+    next: "intercourse",
     answers: [
       {
         id: "countriesAIDS.yesLately",
@@ -464,10 +471,11 @@ const formData = [
       },
     ],
   },
-  {
-    id: "intercourse",
+  "intercourse": {
     questionText:
       "האם קיימת יחסי מין בסיכון גבוה להידבקות במחלות אשר עלולות לעבור בעירוי (יחסים אנאליים ו/או בהשפעת סמים) עם שותף/ה חדש/ה או שותפים מרובים?",
+    prev: 'countriesAIDS',
+    isFinal: true,
     answers: [
       {
         id: "intercourse.yesLately",
@@ -484,10 +492,6 @@ const formData = [
       },
     ],
   },
-];
+};
 
-// export default formData
-
-const formDataTest = formData.slice(0, 5)
-
-export default formDataTest
+export default formData
