@@ -394,7 +394,7 @@ const formData = {
     questionText: "האם ביקרת בשנה האחרונה באחת מהמדינות הבאות?",
     description: "...", //where is the file with list of countries?
     prev: 'miscProcedures',
-    next: "countriesLongStay",
+    next: "countriesAIDS",
     answers: [
       {
         id: "countriesLastYear.yes",
@@ -408,7 +408,7 @@ const formData = {
       },
     ],
   },
-  "countriesLongStay": {
+  "countriesLongStay": { // SKIPPING THIS.
     description: "...", //where is the file with list of countries?
     questionText: "האם שהית תקופה של מעל 6 חודשים באחת מהמדינות הבאות?",
     prev: 'countriesLastYear',
