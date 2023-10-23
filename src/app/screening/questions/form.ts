@@ -2,7 +2,7 @@ const formData = {
   recentDonation: {
     questionText: "האם תרמת דם בשלושת החודשים האחרונים?",
     isFirst: true,
-    next: "intercourse",
+    next: "age",
     answers: [
       {
         id: "recentDonation.yes",
@@ -31,37 +31,16 @@ const formData = {
       {
         id: "age.17to18",
         answerText: "17 עד 18",
-        comment: "link to apotropus doc: https://blabla.com",
+        comment: "באפשרותך לתרום דם, אך תידרש חתימת הורים/אפוטרופוס. ניתן להוריד את הטופס המתאים בקישור: https://www.mdais.org/media/3384/mda-044-7905.pdf",
       },
       {
         id: "age.18to59",
         answerText: "18 עד 59",
       },
       {
-        id: "age.60to64",
-        answerText: "60 עד 64",
-        next: "age.60to64.firstTime",
-      },
-      {
-        id: "age.65up",
-        answerText: "65 ומעלה",
-        comment: "link to apotropus doc: https://blablabla.com",
-      },
-    ],
-  },
-  'age.60to64.firstTime': {
-    questionText: "האם זוהי תרומת הדם הראשונה שלך?",
-    prev: 'age',
-    next: "gender",
-    answers: [
-      {
-        id: "age.60to64.firstTime.yes",
-        answerText: "כן",
-        comment: "link to apotropus doc: https://blablabla.com",
-      },
-      {
-        id: "age.60to64.firstTime.no",
-        answerText: "לא",
+        id: "age.60up",
+        answerText: "60 ומעלה",
+		comment: "מגיל 60 אם זו התרומה הראשונה, נדרש אישור רופא מטפל. מגיל 65 נדרש אישור רופא לפני כל תרומה.",
       },
     ],
   },
@@ -118,7 +97,7 @@ const formData = {
   conditions: {
     questionText: "האם הינך סובל מאחד מהמצבים הבאים?",
     description:
-      " בעיה לבבית או הפרעות בקצב הלב הדורשות טיפול תרופתי, המופיליה או מחלת הנפילה (אפילפסיה) המטופלת בטיפול תרופתי או שחוו התקף ב-5 השנים האחרונות",
+      " בעיה לבבית או הפרעות בקצב הלב הדורשות טיפול תרופתי, המופיליה או מחלת הנפילה (אפילפסיה) המטופלת בטיפול תרופתי או שחווית התקף אפילפסיה ב-5 השנים האחרונות",
     prev: 'birth',
     next: "antibiotics",
     answers: [
@@ -158,9 +137,9 @@ const formData = {
     ],
   },
   teeth: {
-    questionText: "האם עברת טיופל שיניים לאחרונה?",
+    questionText: "האם עברת טיפול שיניים לאחרונה?",
     description:
-      "האם עברת אחד או יותר מהטיפולים הבאים: שיננית ב-24 שעות האחרונות, טיפול שורש/עקירת שן בשבוע האחרון, השתלת שיניים בחודש האחרון.",
+      "האם עברת אחד או יותר מהטיפולים הבאים: שיננית ב-24 שעות האחרונות, טיפול שורש/עקירת שן בשבוע האחרון, השתלת שיניים בחודש האחרון?",
     prev: 'antibiotics',
     next: "hepatitis",
     answers: [
@@ -301,7 +280,7 @@ const formData = {
     ],
   },
   "diabetes.yes.balanced": {
-    questionText: "האם הסכרת מאוזנת על ידי דיאטה או תרופות?",
+    questionText: "האם הסכרת מאוזנת? (על ידי דיאטה או תרופות)",
     prev: 'diabetes',
     next: "cancer",
     answers: [
@@ -311,7 +290,7 @@ const formData = {
       },
       {
         id: "diabetes.yes.balanced.no",
-        answerText: "לא / מטופל באינסולין",
+        answerText: "לא מאוזנת / מטופלת באינסולין",
         isTerminal: true,
       },
     ],
@@ -324,7 +303,7 @@ const formData = {
       {
         id: "cancer.yesVirus",
         answerText:
-          "כן, מחלה או היסטוריה של מחלה ממאירה המטולוגית או המושרית על ידי וירוסים (לויקמיה, לימפומה, מחלת הודג'קין.",
+          "כן, מחלה או היסטוריה של מחלה ממאירה המטולוגית או המושרית על ידי וירוסים (לויקמיה, לימפומה, מחלת הודג'קין).",
         isTerminal: true,
       },
       {
@@ -339,7 +318,7 @@ const formData = {
     ],
   },
   "cancer.yesOther.beated": {
-    questionText: "האם חלפו 5 שנים לאחר השלמת הטיפול והחלמה מלאה?",
+    questionText: "האם חלפו 5 שנים מהשלמת הטיפול והחלמה מלאה?",
     prev: 'cancer',
     next: "anemia",
     answers: [
