@@ -5,7 +5,6 @@
 import Head from "next/head"
 import Link from "next/link"
 import { Button } from "antd"
-import logo from './images/logo_min.svg'
 import logo_b from './images/logo_b.svg'
 import Image from 'next/image'
 import Toolbar from "./common/components/toolbar/toolbar"

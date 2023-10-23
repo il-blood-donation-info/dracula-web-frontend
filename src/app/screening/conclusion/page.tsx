@@ -10,9 +10,6 @@ import Link from "next/link"
 import { ScreeningConclusion } from "../../../app/common/constants/screening"
 import Image from 'next/image'
 import screeningSuccessMale from '../../images/screening_approved_male.svg'
-import screeningSuccessFemale from '../../images/screening_approved_female.svg'
-import screeningSuccessEllipse from '../../images/screening_approved_ellipse.svg'
-import screeningSuccessDrop from '../../images/screening_approved_drop.svg'
 
 export default function Screening() {
   const [state, _dispatch] = useContext(GlobalStateContext) as any
