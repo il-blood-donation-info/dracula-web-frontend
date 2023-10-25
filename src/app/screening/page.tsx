@@ -4,16 +4,19 @@ import { Button } from "antd"
 import Head from "next/head"
 import Link from "next/link"
 import { useContext, useEffect } from "react";
-import Image from 'next/image'
 import { GlobalStateContext, INIT_SCREENING } from "../global-state"
-import intro from '../images/screening_intro.svg'
+import isEmpty from 'lodash/isEmpty'
+import formImg from '../images/screening_form.svg'
+import HeaderVisual from "../common/components/header-visual/header-visual";
 
 export default function Screening() {
   const [state, dispatch] = useContext(GlobalStateContext) as any
 
-  useEffect(() => {
-    dispatch({ type: INIT_SCREENING })
-  }, [dispatch])
+  const isScreeningInProgress = !!state.screening.latestQuestionId
+
+  const resetScreening = () => {
+    dispatch({ type: INIT_SCREENING, payload: { } })
+  }
 
   return (
     <div className="h-full">
@@ -21,11 +24,9 @@ export default function Screening() {
         <title>סימולציית התאמה לתרומת דם</title>
       </Head>
       <div className="flex flex-col justify-between h-full">
-        <div>
-          <div>
-            <Image src={intro} alt="" />
-          </div>
-          <div className="text-lg text-center font-bold mt-8">
+        <div className="flex flex-col justify-center h-full">
+          <HeaderVisual visual={formImg} />
+          <div className="text-lg text-center font-bold mt-16">
             סימולציית התאמה לתרומת דם
           </div>
           <p className="mt-6">
@@ -45,16 +46,29 @@ export default function Screening() {
               </Link>
             ) : (
               <div>
-                <Link href="/screening/questions" className="w-full">
-                  <Button block className="h-12 bg-red-400 text-white rounded-3xl text-base">
-                    להמשיך מאיפה שעצרתי
-                  </Button>
-                </Link>
-                <Link href="/screening/questions" className="w-full">
-                  <Button block className="h-12 rounded-3xl text-base">
-                    להתחיל מחדש
-                  </Button>
-                </Link>
+                {
+                  isScreeningInProgress ? (
+                    <div>
+                      <Link href="/screening/questions" className="w-full">
+                        <Button block className="h-12 bg-red-400 text-white rounded-3xl text-base">
+                          להמשיך מאיפה שעצרתי
+                        </Button>
+                      </Link>
+                      <Link href="/screening/questions" className="w-full">
+                        <Button onClick={resetScreening} block className="h-12 rounded-3xl text-base mt-4">
+                          להתחיל מחדש
+                        </Button>
+                      </Link>
+                    </div>
+                  ) : (
+                    <Link href="/screening/questions" className="w-full">
+                          <Button block className="h-12 bg-red-400 text-white rounded-3xl text-base mt-4">
+                        להתחיל
+                      </Button>
+                    </Link>
+                  )
+                }
+
               </div>
             )
           }

@@ -3,11 +3,13 @@ const formData = {
     questionText: "האם תרמת דם בשלושת החודשים האחרונים?",
     isFirst: true,
     next: "age",
+    description: "- דוגמא להחליף דוגמא להחליף <strong>דוגמא מודגשת</strong><br /> - דוגמא 2 דוגמא 2 דוגמא דוגמא דוגמא",
     answers: [
       {
         id: "recentDonation.yes",
         answerText: "כן",
         isTerminal: true,
+        confirmationText: 'מינימום זמן לתרומת דם הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
         comment:
           'המינימום בין תרומות דם על פי קריטריוני מד"א הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
       },
@@ -21,6 +23,7 @@ const formData = {
     questionText: "מהו גילך?",
     prev: 'recentDonation',
     next: "gender",
+    description: ['אנגולה', 'הודו', 'סינגפור', 'האיטי', 'מדגסקר', 'הולנד', 'רוסיה', 'לאוס', 'asdfas', 'afasdf', 'fasdf', 'fasdfav', 'verg'],
     answers: [
       {
         id: "age.under17",
@@ -45,6 +48,7 @@ const formData = {
       {
         id: "age.65up",
         answerText: "65 ומעלה",
+        confirmationText: 'יידרש אישור מרופא משפחה לעמידה במדדים כתורם דם, וגם קריטריונים נוספים במקום ההתרמה',
         comment: "link to apotropus doc: https://blablabla.com",
       },
     ],
