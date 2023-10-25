@@ -5,7 +5,6 @@ import Head from "next/head"
 import Link from "next/link"
 import { useContext, useEffect } from "react";
 import { GlobalStateContext, INIT_SCREENING } from "../global-state"
-import isEmpty from 'lodash/isEmpty'
 import formImg from '../images/screening_form.svg'
 import HeaderVisual from "../common/components/header-visual/header-visual";
 

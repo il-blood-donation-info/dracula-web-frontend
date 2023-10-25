@@ -22,7 +22,7 @@ const firstQuestionId = findKey(formData, 'isFirst')
 const topQuestionsCount = size(filter(keys(formData), (key) => !key.includes('.')))
 
 export default function Screening() {
-  const [answerConfirmationStage, setAnswerConfirmationStage] = useState()
+  const [answerConfirmationStage, setAnswerConfirmationStage] = useState<Answer>()
   const [{ screening: { answers, latestQuestionId } }, dispatch] = useContext(GlobalStateContext) as any
   const [currentQuestionId, setCurrentQuestionId] = useState(latestQuestionId || firstQuestionId)
   const router = useRouter()

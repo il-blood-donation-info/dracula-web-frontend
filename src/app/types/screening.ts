@@ -4,4 +4,5 @@ export interface Answer {
   next: string
   answerText: string
   confirmationText: string
+  isTerminal: boolean
 }
