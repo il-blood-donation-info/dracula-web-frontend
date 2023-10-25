@@ -144,6 +144,7 @@ export default function Where() {
                 setFilteredLocations(locations.filter((loc) => loc.city.includes(option)))
               }
             }
+          placeholder="באיזה עיר אני רוצה לתרום?"
           />
         {filteredLocations.length > 0 ? (<div className="flex flex-col gap-2">
           {

@@ -5,7 +5,7 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 're
 import search from '../../../images/search.svg'
 import { isEmpty } from 'lodash'
 
-export const AutoComplete = ({ options, onSelectOption }: Props) => {
+export const AutoComplete = ({ options, onSelectOption, placeholder }: Props) => {
   const searchContainer = useRef<HTMLDivElement>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [inputWidth, setInputWidth] = useState(0);
@@ -82,7 +82,7 @@ export const AutoComplete = ({ options, onSelectOption }: Props) => {
           }}
           onClick={showSuggestion}
           onKeyDown={keyboardNavigation}
-          placeholder="באיזה עיר אני רוצה לתרום?" 
+          placeholder={placeholder}
           className="w-full rounded-lg p-2" />
       </div>
       <ul style={{
@@ -109,4 +109,5 @@ export const AutoComplete = ({ options, onSelectOption }: Props) => {
 type Props = {
   options: Array<string>
   onSelectOption: (option: string) => void
+  placeholder: string
 }
