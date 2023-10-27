@@ -10,6 +10,8 @@ const formData = {
         isTerminal: true,
         comment:
           'המינימום בין תרומות דם על פי קריטריוני מד"א הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
+		confirmationText:
+          'המינימום בין תרומות דם על פי קריטריוני מד"א הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
       },
       {
         id: "recentDonation.no",
@@ -26,7 +28,9 @@ const formData = {
         id: "age.under17",
         answerText: "מתחת ל-17",
         isTerminal: true,
-        comment: "הגיל המינימלי לתרומת דם הינו 17.",
+        comment: "לא ניתן לתרום דם מתחת לגיל 17.",
+		confirmationText:
+		  'לא ניתן לתרום דם מתחת לגיל 17.',
       },
       {
         id: "age.17to18",
@@ -69,7 +73,9 @@ const formData = {
         id: "pregnant.yes",
         answerText: "כן",
         isTerminal: true,
-        comment: "אין באפשרותך לתרום כעת. מתן תרומת דם עשוי לסכן את בריאותך.",
+        comment: 'לא ניתן לתרום דם במהלך הריון.',
+		confirmationText:
+		  'לא ניתן לתרום דם במהלך הריון.'
       },
       {
         id: "pregnant.no",
@@ -86,7 +92,8 @@ const formData = {
         id: "birth.yes",
         answerText: "כן",
         isTerminal: true,
-        comment: "אין באפשרותך לתרום כעת. מתן תרומת דם עשוי לסכן את בריאותך.",
+        comment: "לא ניתן לתרום דם לאחר לידה.",
+		confirmationText: "לא ניתן לתרום דם לאחר לידה.",
       },
       {
         id: "birth.no",
@@ -97,7 +104,7 @@ const formData = {
   conditions: {
     questionText: "האם הינך סובל מאחד מהמצבים הבאים?",
     description:
-      " בעיה לבבית או הפרעות בקצב הלב הדורשות טיפול תרופתי, המופיליה או מחלת הנפילה (אפילפסיה) המטופלת בטיפול תרופתי או שחווית התקף אפילפסיה ב-5 השנים האחרונות",
+      "- בעיה לבבית/הפרעות בקצב הלב הדורשות טיפול תרופתי<br/>- המופיליה/מחלת הנפילה (אפילפסיה) המטופלת בטיפול תרופתי<br/>- חווית התקף אפילפסיה ב-5 השנים האחרונות",
     prev: 'birth',
     next: "antibiotics",
     answers: [
@@ -106,6 +113,7 @@ const formData = {
         answerText: "כן",
         isTerminal: true,
         comment: "אין באפשרותך לתרום. מתן תרומת דם עשויה לסכן את בריאותך.",
+		confirmationText: "אין באפשרותך לתרום. מתן תרומת דם עשויה לסכן את בריאותך.",
       },
       {
         id: "conditions.no",
@@ -129,6 +137,8 @@ const formData = {
         isTerminal: true,
         comment:
           "אין באפשרותך לתרום כעת, עליך לסיים את הטיפול לפני מתן תרומת דם.",
+		confirmationText: 
+		  "אין באפשרותך לתרום כעת, עליך לסיים את הטיפול לפני מתן תרומת דם.",
       },
       {
         id: "antibiotics.no",
@@ -139,7 +149,7 @@ const formData = {
   teeth: {
     questionText: "האם עברת טיפול שיניים לאחרונה?",
     description:
-      "האם עברת אחד או יותר מהטיפולים הבאים: שיננית ב-24 שעות האחרונות, טיפול שורש/עקירת שן בשבוע האחרון, השתלת שיניים בחודש האחרון?",
+      "- שיננית ב-24 שעות האחרונות<br/>- טיפול שורש/עקירת שן בשבוע האחרון<br/>- השתלת שיניים בחודש האחרון?",
     prev: 'antibiotics',
     next: "hepatitis",
     answers: [
@@ -147,6 +157,8 @@ const formData = {
         id: "teeth.yes",
         answerText: "כן",
         isTerminal: true,
+		comment: "לא ניתן לתרום דם לאחר טיפול שיניים",
+		confirmationText: "לא ניתן לתרום דם לאחר טיפול שיניים",
       },
       {
         id: "teeth.no",
@@ -193,6 +205,7 @@ const formData = {
         id: "hepatitis.A.notRecent.No",
         answerText: "לא",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
     ],
   },
@@ -209,6 +222,7 @@ const formData = {
         id: "hepatitis.NA.notRecent.no",
         answerText: "לא",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
     ],
   },
@@ -223,6 +237,7 @@ const formData = {
         id: "vaccine.yes",
         answerText: "כן",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "vaccine.no",
@@ -260,6 +275,7 @@ const formData = {
         id: "asthma.yes.well.no",
         answerText: "לא",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
     ],
   },
@@ -292,6 +308,7 @@ const formData = {
         id: "diabetes.yes.balanced.no",
         answerText: "לא מאוזנת / מטופלת באינסולין",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
     ],
   },
@@ -305,6 +322,7 @@ const formData = {
         answerText:
           "כן, מחלה או היסטוריה של מחלה ממאירה המטולוגית או המושרית על ידי וירוסים (לויקמיה, לימפומה, מחלת הודג'קין).",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "cancer.yesOther",
@@ -330,6 +348,7 @@ const formData = {
         id: "cancer.yesOther.beated.no",
         answerText: "לא",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
     ],
   },
@@ -342,6 +361,7 @@ const formData = {
         id: "anemia.yes",
         answerText: "כן",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "anemia.no",
@@ -358,6 +378,7 @@ const formData = {
         id: "transfusion.yesLately",
         answerText: "כן, ב-4 חודשים האחרונים",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "transfusion.yesNotLately",
@@ -379,6 +400,7 @@ const formData = {
         id: "miscProcedures.yesLately",
         answerText: "כן, ב-4 חודשים האחרונים",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "miscProcedures.yesNotLately",
@@ -392,7 +414,7 @@ const formData = {
   },
   "countriesLastYear": {
     questionText: "האם ביקרת בשנה האחרונה באחת מהמדינות הבאות?",
-    description: "...", //where is the file with list of countries?
+    description: ["אוגנדה (Uganda)", "איי שלמה (Solomon Islands)", "אינדונזיה (Indonesia)", "אנגולה (Angola)", "אסוואטיני(סווזילנד) (Swaziland)", "אפגניסטן (Afganistan)", "אקוודור (Ecuador)", "אריתריאה (Eritrea)", "אתיופיה (Ethiopia)", "בוטסואנה (Botswana)", "בוליביה (Bolivia)", "בורונדי (Burundi)", "בורמה (מיאנמר) (Burma)", "בורקינה פאסו (Burkina Faso)", "בליז (Belize)", "בנגלדש (Bangladesh)", "בנין (Benin)", "ברזיל (Brazil)", "גאנה (Ghana)", "גבון (Gabon)", "גואטמלה (Guatemala)", "גיאנה (Guyana)", "גיאנה הצרפתית (French Guiana)", "ג'יבוטי (Djibouti)", "גינאה (Guinea)", "גינאה ביסאו (Guinea-Bissau)", "גינאה המשוונית (Equatorial Guinea)", "גמביה (Gambia)", "דרום אפריקה (South Africa)", "דרום סודאן (South Sudan)", "האיטי (Haiti)", "הודו (India)", "הונדורס (Honduras)", "הרפובליקה הדומיניקנית (Dominican Republic)", "הרפובליקה הדמוקרטית  של קונגו (קונגו-קינשאסה) (Democratic Republic of the Congo( Congo-Kinshasa))", "הרפובליקה המרכז אפריקאית (Central African Republic)", "הרפובליקה של קונגו (קונגו- ברזוויל) (Republic of the Congo (Congo-Brazzaville))", "וייטנאם (Vietnam)", "ונואטו (Vanuatu)", "ונצואלה (Venezuela)", "זימבבואה (Zimbabwe (Rhodesia))", "זמביה (Zambia)", "זנזיבר(טנזניה) (Zanzibar(Tansania))", "חוף השנהב (Cote d'Ivoire (Ivory Coast))", "טוגו (Togo)", "טנזניה (Tansania)", "לאוס (Laos)", "ליבריה (Liberia)", "מאוריטניה (Mauritania)", "מאלי (Mali)", "מדגסקר (Madagascar)", "מוזמביק (Mozambique)", "מזרח טימור (Timor - Leste)", "מלאווי (Malawi)", "מלזיה (Malaysia)", "מקסיקו (Mexico)", "ניגריה (Nigeria)", "ניז'ר (Niger)", "ניקרגואה (Nicaragua)", "נמיביה (Namibia)", "נפאל (Nepal)", "סאו טומה ופרינסיפה (Sao Tome & Principe)", "סודאן (Sudan)", "סומליה (Somalia)", "סורינם (Suriname)", "סיירה-לאון (Sierra Leone)", "סנגל (Senegal)", "ערב הסעודית (Saudi Arabia)", "פיליפינים (Philippines)", "פנמה (Panama)", "פפואה  גינאה החדשה (Papua New Guinea)", "פקיסטן (Pakistan)", "פרו (Peru)", "צ'אד (Chad)", "קולומביה (Colombia)", "קומורו (Comoros)", "קוריאה הדרומית (Korea South)", "קוריאה הצפונית (Korea North)", "קמבודיה (Cambodia)", "קמרון (Cameroon)", "קניה (Kenya)", "רואנדה (Rwanda)", "תאילנד (Thailand)", "תימן (Yemen)"],
     prev: 'miscProcedures',
     next: "countriesAIDS",
     answers: [
@@ -400,6 +422,7 @@ const formData = {
         id: "countriesLastYear.yes",
         answerText: "כן",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
 
       {
@@ -408,30 +431,9 @@ const formData = {
       },
     ],
   },
-  "countriesLongStay": { // SKIPPING THIS.
-    description: "...", //where is the file with list of countries?
-    questionText: "האם שהית תקופה של מעל 6 חודשים באחת מהמדינות הבאות?",
-    prev: 'countriesLastYear',
-    next: "countriesAIDS",
-    answers: [
-      {
-        id: "countriesLongStay.yesLately",
-        answerText: "כן, ב-3 השנים האחרונות",
-        isTerminal: true,
-      },
-      {
-        id: "countriesLongStay.yesNotLately",
-        answerText: "כן, לפני יותר מ-3 שנים",
-      },
-      {
-        id: "countriesLongStay.no",
-        answerText: "לא",
-      },
-    ],
-  },
   "countriesAIDS": {
     questionText: "האם שהית או ביקרת באחת מהמדינות הבאות?",
-    description: "...", //where is the file with list of countries?
+    description: ["איי בהאמה (Bahamas)", "אריתריאה (Eritrea)", "אתיופיה (Ethiopia)", "בוטסואנה (Botswana)", "בליז (Belize)", "ברבדוס (Barbados)", "ג'מייקה (Jamaica)", "דרום אפריקה (South Africa)", "הרפובליקה הדומיניקנית (Dominican Republic)", "טרינידד וטובגו (Trinidad and Tobago)", "כף ורדה (Cape Verde Islands)", "לסוטו (Lesotho)", "מאוריציוס (Mauritius)", "נמיביה (Namibia)", "סורינם (Suriname)", "תאילנד (Thailand)"],
     prev: 'countriesLongStay',
     next: "intercourse",
     answers: [
@@ -439,6 +441,7 @@ const formData = {
         id: "countriesAIDS.yesLately",
         answerText: "כן, בשלושת החודשים האחרונים",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "countriesAIDS.yesNotLately",
@@ -460,6 +463,7 @@ const formData = {
         id: "intercourse.yesLately",
         answerText: "כן, בשלושת החודשים האחרונים",
         isTerminal: true,
+		confirmationText: "אין באפשרותך לתרום דם כעת.",
       },
       {
         id: "intercourse.yesNotLately",

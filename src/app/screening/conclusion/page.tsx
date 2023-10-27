@@ -1,18 +1,16 @@
 'use client'
 
 import Toolbar from "../../common/components/toolbar/toolbar"
-import { Button } from "antd"
+import { Button, Card } from "antd"
 import isEmpty from 'lodash/isEmpty'
 import Head from "next/head"
 import { useContext } from "react"
 import { GlobalStateContext } from "../../global-state"
 import Link from "next/link"
 import { ScreeningConclusion } from "../../../app/common/constants/screening"
-import Image from 'next/image'
-import screeningSuccessMale from '../../images/screening_approved_male.svg'
-import screeningSuccessFemale from '../../images/screening_approved_female.svg'
-import screeningSuccessEllipse from '../../images/screening_approved_ellipse.svg'
-import screeningSuccessDrop from '../../images/screening_approved_drop.svg'
+import screeningApproved from '../../images/screening_approved.svg'
+import screeningRejected from '../../images/screening_rejected.svg'
+import HeaderVisual from "@/app/common/components/header-visual/header-visual"
 
 export default function Screening() {
   const [state, _dispatch] = useContext(GlobalStateContext) as any
@@ -23,26 +21,25 @@ export default function Screening() {
       <Head>
         <title>סיכום שאלון רפואי</title>
       </Head>
-      <Toolbar />
       <div className="flex flex-col justify-between h-full">
         {
           status === ScreeningConclusion.Approved && (
-            <div className="flex flex-col items-center">
-              <div className="relative">
-                <Image src={screeningSuccessEllipse} alt="" className="z-1"></Image>
-                <Image src={screeningSuccessDrop} alt="" className="z-2 absolute bottom-0 left-1/2 w-1/2 h-1/2"></Image>
-                <Image
-                  src={state.screening.answers.gender === 'gender.male' ? screeningSuccessMale : screeningSuccessFemale} alt=""
-                  className="w-full h-4/6 z-3 absolute bottom-0"
-                />
-              </div>
-              <div>🥳 איזה כיף, עברת את השאלון בהצלחה!</div>
-              <div>
-                {
-                  comments && comments.map((comment: string) => (
-                    <div key={comment}>{comment}</div>
-                  ))
-                }
+            <div className="h-full flex flex-col justify-between items-center">
+              <HeaderVisual visual={screeningApproved} />
+              <div className="mt-16 h-full flex flex-col justify-center">
+                <div className="text-lg text-center font-bold ">
+                  אפשר ללכת לתרום דם!
+                </div>
+                <div className="mt-6">
+                  על בסיס הנתונים שמילאתם אתם מתאימים לתרום דם. ניתן לגשת לעמדת ההתרמה הקרובה, שם תתבקשו להשלים טפסים ובדיקות נוספות תרם התרומה.
+                </div>
+                <div>
+                  {
+                    comments && comments.map((comment: string) => (
+                      <Card key={comment} className="text-base bg-gray-200">{comment}</Card>
+                    ))
+                  }
+                </div>
               </div>
               <Link href="/where" className="w-full">
                 <Button
@@ -56,15 +53,28 @@ export default function Screening() {
         }
         {
           status === ScreeningConclusion.Rejected && (
-            <div className="h-1/6 flex flex-col justify-center items-center">
-              <div className="text-xl"> 😭 אין אישור לתרומת דם</div>
-              <div className="mt-8">
-                {
-                  comments && comments.map((comment: string) => (
-                    <div key={comment}>{comment}</div>
-                  ))
-                }
+            <div className="h-full flex flex-col justify-between items-center">
+              <HeaderVisual visual={screeningRejected} />
+              <div className="mt-16 h-full flex flex-col justify-center">
+                <div className="text-lg text-center font-bold ">
+                  כרגע לא ניתן לתרום דם
+                </div>
+                <div>
+                  תודה על הנכונות לתרום ולהציל חיים. מצאנו שאינכם מתאימים כרגע לתרומת דם.
+                                </div>
+                <div className="mt-8">
+                  {
+                    comments && comments.map((comment: string) => (
+                      <Card key={comment} className="text-base bg-gray-200">{comment}</Card>
+                    ))
+                  }
+                </div>
               </div>
+              <Link href="/" className="w-full">
+                <Button block className="h-12 rounded-3xl text-base mt-4">
+                  למסך הראשי
+                </Button>
+              </Link>
             </div>
           )
         }

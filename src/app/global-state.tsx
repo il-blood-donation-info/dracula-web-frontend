@@ -21,6 +21,7 @@ export const reducer = (state: any, action: any) => {
         ...state,
         screening: {
           ...state.screening,
+          latestQuestionId: payload.questionId,
           answers: {
             ...state.screening.answers,
             [payload.questionId]: {

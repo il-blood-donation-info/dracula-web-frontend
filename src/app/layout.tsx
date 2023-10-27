@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="he" dir="rtl" className="h-full">
-      <body className={`${heebo.className} h-full`}>
+      <body className={`${heebo.className} h-full px-4 py-6`}>
         <GlobalState>
           {children}
         </GlobalState>
