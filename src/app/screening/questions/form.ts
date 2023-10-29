@@ -434,7 +434,7 @@ const formData = {
   "countriesAIDS": {
     questionText: "האם שהית או ביקרת באחת מהמדינות הבאות?",
     description: ["איי בהאמה (Bahamas)", "אריתריאה (Eritrea)", "אתיופיה (Ethiopia)", "בוטסואנה (Botswana)", "בליז (Belize)", "ברבדוס (Barbados)", "ג'מייקה (Jamaica)", "דרום אפריקה (South Africa)", "הרפובליקה הדומיניקנית (Dominican Republic)", "טרינידד וטובגו (Trinidad and Tobago)", "כף ורדה (Cape Verde Islands)", "לסוטו (Lesotho)", "מאוריציוס (Mauritius)", "נמיביה (Namibia)", "סורינם (Suriname)", "תאילנד (Thailand)"],
-    prev: 'countriesLongStay',
+    prev: 'countriesLastYear',
     next: "intercourse",
     answers: [
       {
