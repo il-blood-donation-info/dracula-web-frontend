@@ -5,6 +5,7 @@ import clock from '../../images/clock.svg'
 import markerLocation from '../../images/marker_location.svg'
 import Image from "next/image"
 import Link from "next/link"
+import BulletSVG from "./bullet-svg"
 
 type Props = {
   location: Location
@@ -20,12 +21,12 @@ const displayDay = {
   6: 'שבת',
 }
 
-export default function LocationBox({ location: { dateFrom, dateTo, name, address, isOpen} }: Props) {
-  const isOpenToday = isToday(dateFrom)
-  const isOpenTomorrow = isTomorrow(dateFrom)
-  const openDay = displayDay[getDay(dateFrom)]
-  const startTime = format(dateFrom, 'H:mm')
-  const endTime = format(dateTo, 'H:mm')
+export default function LocationBox({ location: { openTime, closeTime, name, address, isOpen} }: Props) {
+  const isOpenToday = isToday(openTime)
+  const isOpenTomorrow = isTomorrow(openTime)
+  const openDay = displayDay[getDay(openTime)]
+  const startTime = format(openTime, 'H:mm')
+  const endTime = format(closeTime, 'H:mm')
   return (
         <div 
           className="rounded-3xl border-slate-200 border p-2" 
@@ -36,7 +37,7 @@ export default function LocationBox({ location: { dateFrom, dateTo, name, addres
               {isOpenTomorrow && 'מחר'}
               {!isOpenToday && !isOpenTomorrow && openDay}
               <br />
-              {format(dateFrom, 'dd.MM')}
+              {format(openTime, 'dd.MM')}
             </div>
             <div className="w-full flex flex-col gap-1.5">
                 <div className="flex gap-2 justify-between items-baseline">
@@ -44,10 +45,15 @@ export default function LocationBox({ location: { dateFrom, dateTo, name, addres
                     {name}
                   </CardTitle>
                   {isOpen ? 
-                    <div className="rounded-full text-xs bg-green-200 text-green-700  px-2 py-1"
-                    >• פעיל עכשיו</div> : 
-                    <div className="rounded-full text-xs bg-red-200 text-red-700 px-2 py-1"
-                    >• סגור לקבלת קהל</div>
+                    <div className="rounded-full text-xs bg-green-200 text-green-700 pl-2 flex justify-center items-center flex-none ">
+                      <BulletSVG classes="fill-green-700 w-6 h-6" />
+                      <div>פעיל עכשיו</div>
+                    </div> : 
+                    <div className="rounded-full text-xs bg-red-200 text-red-700 pl-2 flex justify-center items-center flex-none "
+                    >
+                      <BulletSVG classes="fill-red-700 w-6 h-6" />
+                      <div>סגור לקבלת קהל</div>
+                    </div>
                   }
                 </div>
                 <div className="flex gap-2 text-slate-400">

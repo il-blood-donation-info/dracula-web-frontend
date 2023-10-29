@@ -85,7 +85,7 @@ export const AutoComplete = ({ options, onSelectOption, placeholder }: Props) =>
           placeholder={placeholder}
           className="w-full rounded-lg p-2" />
       </div>
-      <ul style={{
+      {isVisible && <ul style={{
         width: `${inputWidth}px`
       }} 
       className={`absolute shadow-md max-h-40 overflow-y-auto border rounded-lg bg-white transition-opacity duration-300 easy ${showOptions ? 'opacity-100' : 'opacity-0'}`}>
@@ -100,7 +100,7 @@ export const AutoComplete = ({ options, onSelectOption, placeholder }: Props) =>
             role="button"
           >{option}</li>
         })}
-      </ul>
+      </ul>}
     </div>
 
   )

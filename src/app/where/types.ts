@@ -1,8 +1,9 @@
 export type Location =  {
+  id: string
   name: string;
   address: string;
   city: string;
-  dateFrom: Date;
-  dateTo: Date;
+  openTime: Date;
+  closeTime: Date;
   isOpen: boolean;
 }
