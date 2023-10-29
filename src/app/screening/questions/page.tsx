@@ -95,7 +95,7 @@ export default function Screening() {
 
           {
             isArray(questionData.description) ? (
-              <Card className="text-base bg-gray-200 overflow-y-scroll h-300 w-full">
+              <Card className="text-base bg-gray-200 overflow-y-scroll max-h-72 w-full">
                 {questionData.description.map((item: string) => <div key={item}>{item}</div>)}
               </Card>
             ) : (
