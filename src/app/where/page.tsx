@@ -8,140 +8,53 @@ import { Location } from './types'
 import { MainTitle } from '../common/components/titles/main-title'
 import { AutoComplete } from '../common/components/inputs/auto-complete'
 import { uniq } from 'lodash'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-const locations : Location[] = [{
-  id: "1",
-  name: 'תל אביב - ביה״ס שבח מופת',
-  address: 'המסגר 7, תל אביב',
-  city: 'תל אביב',
-  openTime: new Date('2023-10-19T15:00:00.905Z'),
-  closeTime: new Date('2023-10-19T19:00:00.905Z'),
-  isOpen: true
-}, {
-  id: "16",
-  name: 'תל אביב - עזריאלי',
-  address: 'בגין 10, בת אביב',
-  city: 'תל אביב',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "2",
-  name: 'ירושלים - מזרח',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'ירושלים',
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  isOpen: false
-},{
-  id: "3",
-  name: 'תל אביב',
-  address: 'המסגר 7, תל אביב',
-  city: 'תל אביב',
-  openTime: new Date('2023-10-19T15:00:00.905Z'),
-  closeTime: new Date('2023-10-19T19:00:00.905Z'),
-  isOpen: true
-}, {
-  id: "4",
-  name: 'תל אביב - עזריאלי - בניין עגול',
-  address: 'בגין 10, בת אביב',
-  city: 'תל אביב',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "5",
-  name: 'תל שבע',
-  address: 'אבוחצירה 8, תל שבע',
-  city: 'תל שבע',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "6",
-  name: 'הרצליה',
-  address: 'אבוחצירה 8, הרצליה',
-  city: 'הרצליה',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-},{
-  id: "7",
-  name: 'רעננה',
-  address: 'אבוחצירה 8, רעננה',
-  city: 'רעננה',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-},{
-  id: "8",
-  name: 'אשקלון',
-  address: 'אבוחצירה 8, אשקלון',
-  city: 'אשקלון',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-},{
-  id: "9",
-  name: 'קריית גת',
-  address: 'אבוחצירה 8, קריית גת',
-  city: 'קריית גת',
-  openTime: new Date('2023-10-18T15:00:00.905Z'),
-  closeTime: new Date('2023-10-18T17:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "10",
-  name: 'ירושלים - מערב',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'ירושלים',
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "11",
-  name: 'תל אליעזר',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'תל אליעזר',
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "12",
-  name: 'תל חדיד',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'תל חדיד',
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "13",
-  name: 'תל שחר',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'תל שחר',
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "14",
-  name: 'כרם שלום',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'כרם שלום',
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  isOpen: false
-}, {
-  id: "15",
-  name: 'תל נסיון',
-  address: 'היכל הפיס ארנה - הכניסה הראשית - זו כתובת ארוכה מאוד',
-  city: 'תלל נסיון',
-  openTime: new Date('2023-10-20T15:00:00.905Z'),
-  closeTime: new Date('2023-10-20T16:00:00.905Z'),
-  isOpen: false
-}]
+
+type scheduleDTO = {
+  address: string,
+  close_time: string,
+  date: string,
+  is_open: boolean,
+  name: string
+  open_time: string
+  station_id: number
+}
+
+const adaptToLocations = (incomingData: scheduleDTO[]) : Location[] => {
+  return incomingData.map((data) => {
+    return {
+      id: `${data.station_id}_${data.address}_${data.date}_${data.open_time}_${data.close_time}`,
+      name: data.name,
+      address: data.address,
+      city: data.address,
+      openTime: new Date(`${data.date}T${data.open_time}`),
+      closeTime: new Date(`${data.date}T${data.close_time}`),
+      isOpen: data.is_open
+    }
+  })
+
+}
 
 export default function Where() {
+  const [locations, setLocations] = useState<Array<Location>>([])
   const [filteredLocations, setFilteredLocations] = useState(locations)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.API_URL}/schedule`)
+        const fetchLocation = await response.json()
+        const locations = adaptToLocations(fetchLocation)
+        setLocations(locations)
+        setFilteredLocations(locations)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    fetchData();
+  }, [])
+
   return (
     <div>
       <Head>
