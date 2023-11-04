@@ -3,13 +3,13 @@
 import { Button } from 'antd'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { GlobalStateContext, INIT_SCREENING } from '../global-state'
 import formImg from '../images/screening_form.svg'
 import HeaderVisual from '../common/components/header-visual/header-visual'
-import { useTranslation, withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
-const Screening = () => {
+function Screening() {
   const [state, dispatch] = useContext(GlobalStateContext) as any
 
   const isScreeningInProgress = !!state.screening.latestQuestionId
@@ -83,4 +83,4 @@ const Screening = () => {
   )
 }
 
-export default withTranslation()(Screening)
+export default Screening
