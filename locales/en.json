@@ -1,0 +1,43 @@
+{
+    "translation": {
+        "homepage": {
+            "title": "Blood donor recruitment",
+            "subtitle": "All information on donation points, instructions for donors and status updates in one place.",
+            "canDonateBtn": "Can I donate?",
+            "whereDonateBtn": "Where do I donate?"
+        },
+        "screening": {
+            "title": "Matching simulation for blood donation",
+            "description": "The purpose of the simulation is to make sure you meet the MDA criteria for donating blood. If you are found suitable, it is recommended to go to a donation station, where you will have to fill out a health declaration, and undergo another test (blood pressure and hemoglobin).",
+            "aboutForm": "This form is based on the MDA form and they will be the factor that will finally determine your suitability for donating blood.",
+            "startBtn": "Start",
+            "restartBtn": "Restart",
+            "continueBtn": "Continue"
+        },
+        "wizard": {
+            "finishBtn": "Finish",
+            "nextQ": "Next question",
+            "recentDonation": {
+                "q": "Have you donated blood in the last three months?",
+                "yes": "Yes",
+                "no": "No",
+                "comment": "The minimum between blood donations according to MDA criteria is at least three months. You cannot donate blood now."
+            }
+        },
+        "conclusion": {
+            "title": "Medical Questionnaire Summary",
+            "homepageBtn": "Back to homepage",
+            "didntFinish": "You have not yet filled out the questionnaire",
+            "letsStart": "Shall we start?",
+            "approve": {
+                "title": "You can go donate blood!",
+                "description": "Based on the data you filled in, you are eligible to donate blood. You can go to the nearest donation station, where you will be asked to complete forms and additional checks for the donation.",
+                "locationsLink": "Where do you donate?"
+            },
+            "reject": {
+                "title": "Currently it is not possible to donate blood",
+                "description": "Thank you for your willingness to donate and save lives. We have found that you are currently ineligible to donate blood."
+            }
+        }
+    }
+}
