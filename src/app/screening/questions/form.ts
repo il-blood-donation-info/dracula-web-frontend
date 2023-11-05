@@ -21,31 +21,31 @@ const formData = (t: any) => {
       ],
     },
     age: {
-      questionText: "מהו גילך?",
+      questionText: t('wizard.age.q'),
       prev: 'recentDonation',
       next: "gender", 
       answers: [
         {
           id: "age.under17",
-          answerText: "מתחת ל-17",
+          answerText: t('wizard.age.under17'),
           isTerminal: true,
-          comment: "לא ניתן לתרום דם מתחת לגיל 17.",
+          comment: t('wizard.age.under17comment'),
           confirmationText:
-            'לא ניתן לתרום דם מתחת לגיל 17.',
+            t('wizard.age.under17comment'),
         },
         {
           id: "age.17to18",
-          answerText: "17 עד 18",
-          comment: "באפשרותך לתרום דם, אך תידרש חתימת הורים/אפוטרופוס. ניתן להוריד את הטופס המתאים בקישור: https://www.mdais.org/media/3384/mda-044-7905.pdf",
+          answerText:t('wizard.age.17to18'),
+          comment: t('wizard.age.17to18comment'),
         },
         {
           id: "age.18to59",
-          answerText: "18 עד 59",
+          answerText: t('wizard.age.18to59'),
         },
         {
           id: "age.60up",
-          answerText: "60 ומעלה",
-          comment: "מגיל 60 אם זו התרומה הראשונה, נדרש אישור רופא מטפל. מגיל 65 נדרש אישור רופא לפני כל תרומה.",
+          answerText: t('wizard.age.60up'),
+          comment: t('wizard.age.60upComment'),
         },
       ],
     },

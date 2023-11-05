@@ -22,6 +22,16 @@
                 "yes": "Yes",
                 "no": "No",
                 "comment": "The minimum between blood donations according to MDA criteria is at least three months. You cannot donate blood now."
+            },
+            "age": {
+                "q": "What is your age?",
+                "under17": "Under 17",
+                "under17comment": "It is not possible to donate blood under the age of 17.",
+                "17to18": "17 to 18",
+                "17to18comment": "You can donate blood, but a parent/guardian signature will be required. You can download the appropriate form at the link: https://www.mdais.org/media/3384/mda-044-7905.pdf",
+                "18to59": "18 to 59",
+                "60up": "60 and above",
+                "60upComment": "From the age of 60 if this is the first donation, a doctor's approval is required. From the age of 65, a doctor's approval is required before any donation."
             }
         },
         "conclusion": {
