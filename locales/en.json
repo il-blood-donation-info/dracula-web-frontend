@@ -32,6 +32,249 @@
                 "18to59": "18 to 59",
                 "60up": "60 and above",
                 "60upComment": "From the age of 60 if this is the first donation, a doctor's approval is required. From the age of 65, a doctor's approval is required before any donation."
+            },
+            "gender": {
+                "q": "What is your gender?",
+                "male": "Male",
+                "female": "Female"
+            },
+            "pregnant": {
+                "q": "Are you pregnant now?",
+                "yes": "Yes",
+                "comment": "It is not possible to donate blood during pregnancy.",
+                "no": "No"
+            },
+            "birth": {
+                "q": "Have you given birth in the last six months?",
+                "yes": "Yes",
+                "comment": "It is not possible to donate blood after giving birth.",
+                "no": "No"
+            },
+            "conditions": {
+                "q": "Do you suffer from one of the following conditions?",
+                "description": "- Cardiac problem/heart rhythm disorders that require drug treatment<br/>- Hemophilia/epileptic disease treated with drug treatment<br/>- Experience of an epilepsy attack in the last 5 years",
+                "yes": "Yes",
+                "comment": "You cannot donate. Donating blood may put your health at risk.",
+                "no": "No"
+            },
+            "antibiotics": {
+                "q": "Have you been treated with antibiotics in the last month?",
+                "yesAndHealed": "Yes, I finished the treatment and recovered from the disease",
+                "yesAndNotHealed": "Yes, I haven't finished the treatment yet and I'm still taking the antibiotics / I haven't recovered",
+                "comment": "You cannot donate now, you must finish treatment before donating blood.",
+                "no": "No"
+            },
+            "teeth": {
+                "q": "Have you had dental treatment recently?",
+                "description": "- Dentist in the last 24 hours<br/>- Root canal/tooth extraction in the last week<br/>- Dental implant in the last month?",
+                "yes": "Yes",
+                "comment": "It is not possible to donate blood after dental treatment",
+                "no": "No"
+            },
+            "hepatitis": {
+                "q": "Are you sick or have you been sick in the past with hepatitis (jaundice)?",
+                "A": "Yes, type A",
+                "BC": "Yes, type B or C",
+                "NA": "Yes, for an unknown reason",
+                "no": "No"
+            },
+            "hepatitis_A_notRecent": {
+                "q": "Did you recover and a year has passed since the date of recovery?",
+                "yes": "Yes",
+                "no": "No",
+                "comment": "You cannot donate blood now."
+            },
+            "hepatitis_NA_notRecent": {
+                "q": "Did you recover and two years have passed since the date of recovery?",
+                "yes": "Yes",
+                "no": "No",
+                "comment": "You cannot donate blood now."
+            },
+            "vaccine": {
+                "q": "Have you received a vaccine recently?",
+                "description": "Have you received a vaccine for one of the following diseases in the last month: rubella, measles, mumps, chicken pox, yellow fever?",
+                "yes": "Yes",
+                "comment": "You cannot donate blood now.",
+                "no": "No"
+            },
+            "asthma": {
+                "q": "Do you have asthma?",
+                "yes": "Yes",
+                "no": "No"
+            },
+            "asthma_yes_well": {
+                "q": "Are you feeling well, without an attack in the last week and not taking steroid pills?",
+                "yes": "Yes",
+                "no": "No",
+                "comment": "You cannot donate blood now."
+            },
+            "diabetes": {
+                "q": "Are you diabetic?",
+                "yes": "Yes",
+                "no": "No"
+            },
+            "diabetes_yes_balanced": {
+                "q": "Is diabetes balanced? (by diet or medication)",
+                "yes": "Yes",
+                "no": "Unbalanced / treated with insulin",
+                "comment": "You cannot donate blood now."
+            },
+            "cancer": {
+                "q": "Are you sick or have you had a malignant disease in the past?",
+                "yesVirus": "Yes, disease or history of hematological or virus-induced malignancy (leukemia, lymphoma, Hodgkin's disease).",
+                "comment": "You cannot donate blood now.",
+                "yesOther": "Yes, other crops.",
+                "no": "No"
+            },
+            "cancer_yesOther_beated": {
+                "q": "Has it been 5 years since the completion of the treatment and full recovery?",
+                "yes": "Yes",
+                "no": "No",
+                "comment": "You cannot donate blood now."
+            },
+            "anemia": {
+                "q": "Do you have anemia or a tendency to bleed?",
+                "yes": "Yes",
+                "comment": "You cannot donate blood now.",
+                "no": "No"
+            },
+            "transfusion": {
+                "q": "Have you received a blood transfusion or blood components?",
+                "yesLately": "Yes, in the last 4 months",
+                "comment": "You cannot donate blood now.",
+                "yesNotLately": "Yes, more than 4 months ago",
+                "no": "No"
+            },
+            "miscProcedures": {
+                "q": "Have you had a tattoo, piercing, permanent makeup or endoscopy with biopsy?",
+                "yesLately": "Yes, in the last 4 months",
+                "comment": "You cannot donate blood now.",
+                "yesNotLately": "Yes, more than 4 months ago",
+                "no": "No"
+            },
+            "countriesLastYear": {
+                "q": "Have you visited one of the following countries in the last year?",
+                "description": [
+                    "Uganda",
+                    "Solomon Islands",
+                    "Indonesia",
+                    "Angola",
+                    "Swaziland",
+                    "Afganistan",
+                    "Ecuador",
+                    "Eritrea",
+                    "Ethiopia",
+                    "Botswana",
+                    "Bolivia",
+                    "Burundi",
+                    "Burma",
+                    "Burkina Faso",
+                    "Belize",
+                    "Bangladesh",
+                    "Benin",
+                    "Brazil",
+                    "Ghana",
+                    "Gabon",
+                    "Guatemala",
+                    "Guyana",
+                    "French Guiana",
+                    "Djibouti",
+                    "Guinea",
+                    "Guinea-Bissau",
+                    "Equatorial Guinea",
+                    "Gambia",
+                    "South Africa",
+                    "South Sudan",
+                    "Haiti",
+                    "India",
+                    "Honduras",
+                    "Dominican Republic",
+                    "Democratic Republic of the Congo (Congo-Kinshasa)",
+                    "Central African Republic",
+                    "Republic of the Congo (Congo-Brazzaville)",
+                    "Vietnam",
+                    "Vanuatu",
+                    "Venezuela",
+                    "Zimbabwe (Rhodesia)",
+                    "Zambia",
+                    "Zanzibar(Tansania)",
+                    "Cote d'Ivoire (Ivory Coast)",
+                    "Togo",
+                    "Tansania",
+                    "Laos",
+                    "Liberia",
+                    "Mauritania",
+                    "Mali",
+                    "Madagascar",
+                    "Mozambique",
+                    "Timor - Leste",
+                    "Malawi",
+                    "Malaysia",
+                    "Mexico",
+                    "Nigeria",
+                    "Niger",
+                    "Nicaragua",
+                    "Namibia",
+                    "Nepal",
+                    "Sao Tome & Principe",
+                    "Sudan",
+                    "Somalia",
+                    "Suriname",
+                    "Sierra Leone",
+                    "Senegal",
+                    "Saudi Arabia",
+                    "Philippines",
+                    "Panama",
+                    "Papua New Guinea",
+                    "Pakistan",
+                    "Peru",
+                    "Chad",
+                    "Colombia",
+                    "Comoros",
+                    "Korea South",
+                    "Korea North",
+                    "Cambodia",
+                    "Cameroon",
+                    "Kenya",
+                    "Rwanda",
+                    "Thailand",
+                    "Yemen"
+                ],
+                "yes": "Yes",
+                "no": "no",
+                "comment": "You cannot donate blood now."
+            },
+            "countriesAIDS": {
+                "q": "Have you stayed or visited one of the following countries?",
+                "description": [
+                    "Bahamas",
+                    "Eritrea",
+                    "Ethiopia",
+                    "Botswana",
+                    "Belize",
+                    "Barbados",
+                    "Jamaica",
+                    "South Africa",
+                    "Dominican Republic",
+                    "Trinidad and Tobago",
+                    "Cape Verde Islands",
+                    "Lesotho",
+                    "Mauritius",
+                    "Namibia",
+                    "Suriname",
+                    "Thailand"
+                ],
+                "yesLately": "Yes, in the last three months",
+                "comment": "You cannot donate blood now.",
+                "yesNotLately": "Yes, more than three months ago",
+                "no": "No"
+            },
+            "intercourse": {
+                "q": "Is there sexual intercourse with a high risk of infection with diseases that may be transmitted by transfusion (anal intercourse and/or under the influence of drugs) with a new partner or multiple partners?",
+                "yesLately": "Yes, in the last three months",
+                "yesLatelyConfirmationText": "You cannot donate blood now.",
+                "yesNotLately": "Yes, more than three months ago",
+                "no": "No"
             }
         },
         "conclusion": {
