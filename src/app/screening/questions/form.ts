@@ -413,6 +413,7 @@ const formData = (t: any) => {
       ],
     },
     "countriesLastYear": {
+      descriptionList: true,
       questionText: t('wizard.countriesLastYear.q'),
       description: t('wizard.countriesLastYear.description'),
       prev: 'miscProcedures',
@@ -432,6 +433,7 @@ const formData = (t: any) => {
       ],
     },
     "countriesAIDS": {
+      descriptionList: true,
       questionText: t('wizard.countriesAIDS.q'),
       description: t('wizard.countriesAIDS.description'),
       prev: 'countriesLastYear',

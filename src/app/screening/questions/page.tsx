@@ -142,9 +142,9 @@ export default function Screening() {
           </div>
           <p className="text-lg">{questionData.questionText}</p>
 
-          {isArray(questionData.description) ? (
+          {questionData.descriptionList ? (
             <Card className="text-base bg-gray-200 overflow-y-scroll max-h-72 w-full">
-              {questionData.description.map((item: string) => (
+              {questionData.description.split(',').map((item: string) => (
                 <div key={item}>{item}</div>
               ))}
             </Card>

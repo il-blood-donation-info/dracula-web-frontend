@@ -11,5 +11,4 @@ i18n.use(initReactI18next).init({
   lng: "he",
 });
 
-
 export default i18n;
