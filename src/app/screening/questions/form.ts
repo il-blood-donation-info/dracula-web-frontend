@@ -420,7 +420,7 @@ const formData = (t: any) => {
       answers: [
         {
           id: "countriesLastYear.yes",
-          answerText: t('wizard.countriesLastYear.q'),
+          answerText: t('wizard.countriesLastYear.yes'),
           isTerminal: true,
           confirmationText: t('wizard.countriesLastYear.comment'),
         },
