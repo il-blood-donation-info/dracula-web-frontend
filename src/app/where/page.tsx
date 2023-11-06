@@ -10,7 +10,6 @@ import { AutoComplete } from '../common/components/inputs/auto-complete'
 import { uniq } from 'lodash'
 import { useEffect, useState } from 'react'
 
-
 type scheduleDTO = {
   address: string,
   close_time: string,
@@ -43,7 +42,7 @@ export default function Where() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.API_URL}/schedule`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/schedule`)
         const fetchLocation = await response.json()
         const locations = adaptToLocations(fetchLocation)
         setLocations(locations)

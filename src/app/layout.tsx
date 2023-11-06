@@ -10,11 +10,6 @@ import GlobalState from './global-state'
 // (Both are under Open Font License)
 const heebo = Heebo({ subsets: ['latin'] })
 
-const dev = process.env.NODE_ENV !== 'production';
-if(dev){
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
-}
-
 export default function RootLayout({
   children,
 }: {
