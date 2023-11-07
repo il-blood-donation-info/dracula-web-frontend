@@ -1,480 +1,483 @@
-const formData = {
-  recentDonation: {
-    questionText: "האם תרמת דם בשלושת החודשים האחרונים?",
-    isFirst: true,
-    next: "age",
-    answers: [
-      {
-        id: "recentDonation.yes",
-        answerText: "כן",
-        isTerminal: true,
-        comment:
-          'המינימום בין תרומות דם על פי קריטריוני מד"א הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
-		confirmationText:
-          'המינימום בין תרומות דם על פי קריטריוני מד"א הינו שלושה חודשים לפחות. אין באפשרותך לתרום דם כעת.',
-      },
-      {
-        id: "recentDonation.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  age: {
-    questionText: "מהו גילך?",
-    prev: 'recentDonation',
-    next: "gender",
-    answers: [
-      {
-        id: "age.under17",
-        answerText: "מתחת ל-17",
-        isTerminal: true,
-        comment: "לא ניתן לתרום דם מתחת לגיל 17.",
-		confirmationText:
-		  'לא ניתן לתרום דם מתחת לגיל 17.',
-      },
-      {
-        id: "age.17to18",
-        answerText: "17 עד 18",
-        comment: "באפשרותך לתרום דם, אך תידרש חתימת הורים/אפוטרופוס. ניתן להוריד את הטופס המתאים בקישור: https://www.mdais.org/media/3384/mda-044-7905.pdf",
-      },
-      {
-        id: "age.18to59",
-        answerText: "18 עד 59",
-      },
-      {
-        id: "age.60up",
-        answerText: "60 ומעלה",
-		comment: "מגיל 60 אם זו התרומה הראשונה, נדרש אישור רופא מטפל. מגיל 65 נדרש אישור רופא לפני כל תרומה.",
-      },
-    ],
-  },
-  gender: {
-    questionText: "מהו מינך?",
-    prev: 'age',
-    next: "conditions",
-    answers: [
-      {
-        id: "gender.male",
-        answerText: "זכר",
-      },
-      {
-        id: "gender.female",
-        answerText: "נקבה",
-        next: "pregnant",
-      },
-    ],
-  },
-  pregnant: {
-    questionText: "האם הינך בהריון כעת?",
-    prev: 'gender',
-    next: "birth",
-    answers: [
-      {
-        id: "pregnant.yes",
-        answerText: "כן",
-        isTerminal: true,
-        comment: 'לא ניתן לתרום דם במהלך הריון.',
-		confirmationText:
-		  'לא ניתן לתרום דם במהלך הריון.'
-      },
-      {
-        id: "pregnant.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  birth: {
-    questionText: "האם ילדת בחצי שנה האחרונה?",
-    prev: 'pregnant',
-    next: "conditions",
-    answers: [
-      {
-        id: "birth.yes",
-        answerText: "כן",
-        isTerminal: true,
-        comment: "לא ניתן לתרום דם לאחר לידה.",
-		confirmationText: "לא ניתן לתרום דם לאחר לידה.",
-      },
-      {
-        id: "birth.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  conditions: {
-    questionText: "האם הינך סובל מאחד מהמצבים הבאים?",
-    description:
-      "- בעיה לבבית/הפרעות בקצב הלב הדורשות טיפול תרופתי<br/>- המופיליה/מחלת הנפילה (אפילפסיה) המטופלת בטיפול תרופתי<br/>- חווית התקף אפילפסיה ב-5 השנים האחרונות",
-    prev: 'birth',
-    next: "antibiotics",
-    answers: [
-      {
-        id: "conditions.yes",
-        answerText: "כן",
-        isTerminal: true,
-        comment: "אין באפשרותך לתרום. מתן תרומת דם עשויה לסכן את בריאותך.",
-		confirmationText: "אין באפשרותך לתרום. מתן תרומת דם עשויה לסכן את בריאותך.",
-      },
-      {
-        id: "conditions.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  antibiotics: {
-    questionText: "האם טופלת באנטיביוטיקה בחודש האחרון?",
-    prev: 'conditions',
-    next: "teeth",
-    answers: [
-      {
-        id: "antibiotics.yesAndHealed",
-        answerText: "כן, סיימתי את הטיפול והחלמתי מהמחלה",
-      },
-      {
-        id: "antibiotics.yesAndNotHealed",
-        answerText:
-          "כן, טרם סיימתי את הטיפול ואני עדיין נוטל את האנטיביוטיקה / לא החלמתי",
-        isTerminal: true,
-        comment:
-          "אין באפשרותך לתרום כעת, עליך לסיים את הטיפול לפני מתן תרומת דם.",
-		confirmationText: 
-		  "אין באפשרותך לתרום כעת, עליך לסיים את הטיפול לפני מתן תרומת דם.",
-      },
-      {
-        id: "antibiotics.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  teeth: {
-    questionText: "האם עברת טיפול שיניים לאחרונה?",
-    description:
-      "- שיננית ב-24 שעות האחרונות<br/>- טיפול שורש/עקירת שן בשבוע האחרון<br/>- השתלת שיניים בחודש האחרון?",
-    prev: 'antibiotics',
-    next: "hepatitis",
-    answers: [
-      {
-        id: "teeth.yes",
-        answerText: "כן",
-        isTerminal: true,
-		comment: "לא ניתן לתרום דם לאחר טיפול שיניים",
-		confirmationText: "לא ניתן לתרום דם לאחר טיפול שיניים",
-      },
-      {
-        id: "teeth.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  hepatitis: {
-    questionText: " האם הינך חולה או חלית בעבר בדלקת כבד (צהבת)?",
-    prev: 'teeth',
-    next: "vaccine",
-    answers: [
-      {
-        id: "hepatitis.A",
-        answerText: "כן, סוג A",
-        next: "hepatitis.A.notRecent",
-      },
-      {
-        id: "hepatitis.BC",
-        answerText: "כן, סוג B או C",
-        isTerminal: true,
-      },
-      {
-        id: "hepatitis.NA",
-        answerText: "כן, מסיבה לא ידוע",
-        next: "hepatitis.NA.notRecent",
-      },
-      {
-        id: "hepatitis.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "hepatitis.A.notRecent": {
-    questionText: "האם החלמת וחלפה שנה ממועד ההחלמה?",
-    prev: 'hepatitis',
-    next: "vaccine",
-    answers: [
-      {
-        id: "hepatitis.A.notRecent.Yes",
-        answerText: "כן",
-      },
-      {
-        id: "hepatitis.A.notRecent.No",
-        answerText: "לא",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-    ],
-  },
-  'hepatitis.NA.notRecent': {
-    questionText: "האם החלמת וחלפו שנתיים ממועד ההחלמה?",
-    prev: 'hepatitis',
-    next: "vaccine",
-    answers: [
-      {
-        id: "hepatitis.NA.notRecent.yes",
-        answerText: "כן",
-      },
-      {
-        id: "hepatitis.NA.notRecent.no",
-        answerText: "לא",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-    ],
-  },
-  vaccine: {
-    questionText: "האם קיבלת חיסון לאחרונה?",
-    description:
-      "האם קיבלת חיסון לאחת מהמחלות הבאות בחודש האחרון: אדמת, חצבת, חזרת, אבעבעות רוח, קדחת צהובה?",
-    prev: 'hepatitis',
-    next: "asthma",
-    answers: [
-      {
-        id: "vaccine.yes",
-        answerText: "כן",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "vaccine.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  asthma: {
-    questionText: "האם הינך חולה באסתמה?",
-    prev: 'vaccine',
-    next: "diabetes",
-    answers: [
-      {
-        id: "asthma.yes",
-        answerText: "כן",
-        next: "asthma.yes.well",
-      },
-      {
-        id: "asthma.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "asthma.yes.well": {
-    questionText:
-      "האם הינך מרגיש טוב, ללא התקף בשבוע האחרון ולא נוטל סטרואידים בכדורים?",
-    prev: 'asthma',
-    next: "diabetes",
-    answers: [
-      {
-        id: "asthma.yes.well.yes",
-        answerText: "כן",
-      },
-      {
-        id: "asthma.yes.well.no",
-        answerText: "לא",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-    ],
-  },
-  diabetes: {
-    questionText: "האם הינך חולה בסכרת?",
-    prev: 'asthma',
-    next: "cancer",
-    answers: [
-      {
-        id: "diabetes.yes",
-        answerText: "כן",
-        next: "diabetes.yes.balanced",
-      },
-      {
-        id: "diabetes.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "diabetes.yes.balanced": {
-    questionText: "האם הסכרת מאוזנת? (על ידי דיאטה או תרופות)",
-    prev: 'diabetes',
-    next: "cancer",
-    answers: [
-      {
-        id: "diabetes.yes.balanced.yes",
-        answerText: "כן",
-      },
-      {
-        id: "diabetes.yes.balanced.no",
-        answerText: "לא מאוזנת / מטופלת באינסולין",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-    ],
-  },
-  "cancer": {
-    questionText: "האם הינך חולה או שחלית בעבר במחלה ממאירה?",
-    prev: 'diabetes',
-    next: "anemia",
-    answers: [
-      {
-        id: "cancer.yesVirus",
-        answerText:
-          "כן, מחלה או היסטוריה של מחלה ממאירה המטולוגית או המושרית על ידי וירוסים (לויקמיה, לימפומה, מחלת הודג'קין).",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "cancer.yesOther",
-        answerText: "כן, גידולים אחרים.",
-        next: "cancer.yesOther.beated",
-      },
-      {
-        id: "cancer.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "cancer.yesOther.beated": {
-    questionText: "האם חלפו 5 שנים מהשלמת הטיפול והחלמה מלאה?",
-    prev: 'cancer',
-    next: "anemia",
-    answers: [
-      {
-        id: "cancer.yesOther.beated.yes",
-        answerText: "כן",
-      },
-      {
-        id: "cancer.yesOther.beated.no",
-        answerText: "לא",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-    ],
-  },
-  "anemia": {
-    questionText: "האם יש לך אנמיה או נטיה לדמם?",
-    prev: 'cancer',
-    next: "transfusion",
-    answers: [
-      {
-        id: "anemia.yes",
-        answerText: "כן",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "anemia.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "transfusion": {
-    questionText: "האם קיבלת עירוי דם או מרכיבי דם?",
-    prev: 'anemia',
-    next: "miscProcedures",
-    answers: [
-      {
-        id: "transfusion.yesLately",
-        answerText: "כן, ב-4 חודשים האחרונים",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "transfusion.yesNotLately",
-        answerText: "כן, לפני יותר מ-4 חודשים",
-      },
-      {
-        id: "transfusion.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "miscProcedures": {
-    questionText:
-      "האם ביצעת כתובת קעקוע, פירסינג, איפור קבוע או אנדוסקופיה עם ביופסיה?",
-    prev: 'transfusion',
-    next: "countriesLastYear",
-    answers: [
-      {
-        id: "miscProcedures.yesLately",
-        answerText: "כן, ב-4 חודשים האחרונים",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "miscProcedures.yesNotLately",
-        answerText: "כן, לפני יותר מ-4 חודשים",
-      },
-      {
-        id: "miscProcedures.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "countriesLastYear": {
-    questionText: "האם ביקרת בשנה האחרונה באחת מהמדינות הבאות?",
-    description: ["אוגנדה (Uganda)", "איי שלמה (Solomon Islands)", "אינדונזיה (Indonesia)", "אנגולה (Angola)", "אסוואטיני(סווזילנד) (Swaziland)", "אפגניסטן (Afganistan)", "אקוודור (Ecuador)", "אריתריאה (Eritrea)", "אתיופיה (Ethiopia)", "בוטסואנה (Botswana)", "בוליביה (Bolivia)", "בורונדי (Burundi)", "בורמה (מיאנמר) (Burma)", "בורקינה פאסו (Burkina Faso)", "בליז (Belize)", "בנגלדש (Bangladesh)", "בנין (Benin)", "ברזיל (Brazil)", "גאנה (Ghana)", "גבון (Gabon)", "גואטמלה (Guatemala)", "גיאנה (Guyana)", "גיאנה הצרפתית (French Guiana)", "ג'יבוטי (Djibouti)", "גינאה (Guinea)", "גינאה ביסאו (Guinea-Bissau)", "גינאה המשוונית (Equatorial Guinea)", "גמביה (Gambia)", "דרום אפריקה (South Africa)", "דרום סודאן (South Sudan)", "האיטי (Haiti)", "הודו (India)", "הונדורס (Honduras)", "הרפובליקה הדומיניקנית (Dominican Republic)", "הרפובליקה הדמוקרטית  של קונגו (קונגו-קינשאסה) (Democratic Republic of the Congo( Congo-Kinshasa))", "הרפובליקה המרכז אפריקאית (Central African Republic)", "הרפובליקה של קונגו (קונגו- ברזוויל) (Republic of the Congo (Congo-Brazzaville))", "וייטנאם (Vietnam)", "ונואטו (Vanuatu)", "ונצואלה (Venezuela)", "זימבבואה (Zimbabwe (Rhodesia))", "זמביה (Zambia)", "זנזיבר(טנזניה) (Zanzibar(Tansania))", "חוף השנהב (Cote d'Ivoire (Ivory Coast))", "טוגו (Togo)", "טנזניה (Tansania)", "לאוס (Laos)", "ליבריה (Liberia)", "מאוריטניה (Mauritania)", "מאלי (Mali)", "מדגסקר (Madagascar)", "מוזמביק (Mozambique)", "מזרח טימור (Timor - Leste)", "מלאווי (Malawi)", "מלזיה (Malaysia)", "מקסיקו (Mexico)", "ניגריה (Nigeria)", "ניז'ר (Niger)", "ניקרגואה (Nicaragua)", "נמיביה (Namibia)", "נפאל (Nepal)", "סאו טומה ופרינסיפה (Sao Tome & Principe)", "סודאן (Sudan)", "סומליה (Somalia)", "סורינם (Suriname)", "סיירה-לאון (Sierra Leone)", "סנגל (Senegal)", "ערב הסעודית (Saudi Arabia)", "פיליפינים (Philippines)", "פנמה (Panama)", "פפואה  גינאה החדשה (Papua New Guinea)", "פקיסטן (Pakistan)", "פרו (Peru)", "צ'אד (Chad)", "קולומביה (Colombia)", "קומורו (Comoros)", "קוריאה הדרומית (Korea South)", "קוריאה הצפונית (Korea North)", "קמבודיה (Cambodia)", "קמרון (Cameroon)", "קניה (Kenya)", "רואנדה (Rwanda)", "תאילנד (Thailand)", "תימן (Yemen)"],
-    prev: 'miscProcedures',
-    next: "countriesAIDS",
-    answers: [
-      {
-        id: "countriesLastYear.yes",
-        answerText: "כן",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
+const formData = (t: any) => {
+  return {
+    recentDonation: {
+      questionText: t('wizard.recentDonation.q'),
+      isFirst: true,
+      next: "age",
+      answers: [
+        {
+          id: "recentDonation.yes",
+          answerText: t('wizard.recentDonation.yes'),
+          isTerminal: true,
+          comment:
+            t('wizard.recentDonation.comment'),
+          confirmationText:
+            t('wizard.recentDonation.comment'),
+        },
+        {
+          id: "recentDonation.no",
+          answerText: t('wizard.recentDonation.no'),
+        },
+      ],
+    },
+    age: {
+      questionText: t('wizard.age.q'),
+      prev: 'recentDonation',
+      next: "gender", 
+      answers: [
+        {
+          id: "age.under17",
+          answerText: t('wizard.age.under17'),
+          isTerminal: true,
+          comment: t('wizard.age.under17comment'),
+          confirmationText:
+            t('wizard.age.under17comment'),
+        },
+        {
+          id: "age.17to18",
+          answerText:t('wizard.age.17to18'),
+          comment: t('wizard.age.17to18comment'),
+        },
+        {
+          id: "age.18to59",
+          answerText: t('wizard.age.18to59'),
+        },
+        {
+          id: "age.60up",
+          answerText: t('wizard.age.60up'),
+          comment: t('wizard.age.60upComment'),
+        },
+      ],
+    },
+    gender: {
+      questionText: t('wizard.gender.q'),
+      prev: 'age',
+      next: "conditions",
+      answers: [
+        {
+          id: "gender.male",
+          answerText: t('wizard.gender.male'),
+        },
+        {
+          id: "gender.female",
+          answerText: t('wizard.gender.female'),
+          next: "pregnant",
+        },
+      ],
+    },
+    pregnant: {
+      questionText: t('wizard.pregnant.q'),
+      prev: 'gender',
+      next: "birth",
+      answers: [
+        {
+          id: "pregnant.yes",
+          answerText: t('wizard.pregnant.yes'),
+          isTerminal: true,
+          comment: t('wizard.pregnant.comment'),
+          confirmationText:
+            t('wizard.pregnant.comment')
+        },
+        {
+          id: "pregnant.no",
+          answerText: t('wizard.pregnant.no'),
+        },
+      ],
+    },
+    birth: {
+      questionText: t('wizard.birth.q'),
+      prev: 'pregnant',
+      next: "conditions",
+      answers: [
+        {
+          id: "birth.yes",
+          answerText: t('wizard.birth.yes'),
+          isTerminal: true,
+          comment: t('wizard.birth.comment'),
+          confirmationText: t('wizard.birth.comment'),
+        },
+        {
+          id: "birth.no",
+          answerText: t('wizard.birth.no'),
+        },
+      ],
+    },
+    conditions: {
+      questionText: t('wizard.conditions.q'),
+      description:
+        t('wizard.conditions.description'),
+      prev: 'birth',
+      next: "antibiotics",
+      answers: [
+        {
+          id: "conditions.yes",
+          answerText: t('wizard.conditions.yes'),
+          isTerminal: true,
+          comment: t('wizard.conditions.comment'),
+          confirmationText: t('wizard.conditions.comment'),
+        },
+        {
+          id: "conditions.no",
+          answerText: t('wizard.conditions.no'),
+        },
+      ],
+    },
+    antibiotics: {
+      questionText: t('wizard.antibiotics.q'),
+      prev: 'conditions',
+      next: "teeth",
+      answers: [
+        {
+          id: "antibiotics.yesAndHealed",
+          answerText: t('wizard.antibiotics.yesAndHealed'),
+        },
+        {
+          id: "antibiotics.yesAndNotHealed",
+          answerText:
+            t('wizard.antibiotics.yesAndNotHealed'),
+          isTerminal: true,
+          comment:
+            t('wizard.antibiotics.comment'),
+          confirmationText:
+            t('wizard.antibiotics.comment'),
+        },
+        {
+          id: "antibiotics.no",
+          answerText: t('wizard.antibiotics.no'),
+        },
+      ],
+    },
+    teeth: {
+      questionText: t('wizard.teeth.q'),
+      description:
+        t('wizard.teeth.description'),
+      prev: 'antibiotics',
+      next: "hepatitis",
+      answers: [
+        {
+          id: "teeth.yes",
+          answerText: t('wizard.teeth.yes'),
+          isTerminal: true,
+          comment: t('wizard.teeth.comment'),
+          confirmationText: t('wizard.teeth.comment'),
+        },
+        {
+          id: "teeth.no",
+          answerText: t('wizard.teeth.no'),
+        },
+      ],
+    },
+    hepatitis: {
+      questionText: t('wizard.hepatitis.q'),
+      prev: 'teeth',
+      next: "vaccine",
+      answers: [
+        {
+          id: "hepatitis.A",
+          answerText: t('wizard.hepatitis.A'),
+          next: "hepatitis.A.notRecent",
+        },
+        {
+          id: "hepatitis.BC",
+          answerText: t('wizard.hepatitis.BC'),
+          isTerminal: true,
+        },
+        {
+          id: "hepatitis.NA",
+          answerText: t('wizard.hepatitis.NA'),
+          next: "hepatitis.NA.notRecent",
+        },
+        {
+          id: "hepatitis.no",
+          answerText: t('wizard.hepatitis.no'),
+        },
+      ],
+    },
+    "hepatitis.A.notRecent": {
+      questionText: t('wizard.hepatitis_A_notRecent.q'),
+      prev: 'hepatitis',
+      next: "vaccine",
+      answers: [
+        {
+          id: "hepatitis.A.notRecent.Yes",
+          answerText: t('wizard.hepatitis_A_notRecent.yes'),
+        },
+        {
+          id: "hepatitis.A.notRecent.No",
+          answerText: t('wizard.hepatitis_A_notRecent.no'),
+          isTerminal: true,
+          confirmationText: t('wizard.hepatitis_A_notRecent.comment'),
+        },
+      ],
+    },
+    'hepatitis.NA.notRecent': {
+      questionText: t('wizard.hepatitis_NA_notRecent.q'),
+      prev: 'hepatitis',
+      next: "vaccine",
+      answers: [
+        {
+          id: "hepatitis.NA.notRecent.yes",
+          answerText: t('wizard.hepatitis_NA_notRecent.yes'),
+        },
+        {
+          id: "hepatitis.NA.notRecent.no",
+          answerText: t('wizard.hepatitis_NA_notRecent.no'),
+          isTerminal: true,
+          confirmationText: t('wizard.hepatitis_NA_notRecent.comment'),
+        },
+      ],
+    },
+    vaccine: {
+      questionText: t('wizard.vaccine.q'),
+      description:
+        t('wizard.vaccine.description'),
+      prev: 'hepatitis',
+      next: "asthma",
+      answers: [
+        {
+          id: "vaccine.yes",
+          answerText: t('wizard.vaccine.yes'),
+          isTerminal: true,
+          confirmationText: t('wizard.vaccine.comment'),
+        },
+        {
+          id: "vaccine.no",
+          answerText: t('wizard.vaccine.no'),
+        },
+      ],
+    },
+    asthma: {
+      questionText: t('wizard.asthma.q'),
+      prev: 'vaccine',
+      next: "diabetes",
+      answers: [
+        {
+          id: "asthma.yes",
+          answerText: t('wizard.asthma.yes'),
+          next: "asthma.yes.well",
+        },
+        {
+          id: "asthma.no",
+          answerText: t('wizard.asthma.no'),
+        },
+      ],
+    },
+    "asthma.yes.well": {
+      questionText:
+        t('wizard.asthma_yes_well.q'),
+      prev: 'asthma',
+      next: "diabetes",
+      answers: [
+        {
+          id: "asthma.yes.well.yes",
+          answerText: t('wizard.asthma_yes_well.yes'),
+        },
+        {
+          id: "asthma.yes.well.no",
+          answerText: t('wizard.asthma_yes_well.no'),
+          isTerminal: true,
+          confirmationText: t('wizard.asthma_yes_well.comment'),
+        },
+      ],
+    },
+    diabetes: {
+      questionText: t('wizard.diabetes.q'),
+      prev: 'asthma',
+      next: "cancer",
+      answers: [
+        {
+          id: "diabetes.yes",
+          answerText: t('wizard.diabetes.yes'),
+          next: "diabetes.yes.balanced",
+        },
+        {
+          id: "diabetes.no",
+          answerText: t('wizard.diabetes.no'),
+        },
+      ],
+    },
+    "diabetes.yes.balanced": {
+      questionText: t('wizard.diabetes_yes_balanced.q'),
+      prev: 'diabetes',
+      next: "cancer",
+      answers: [
+        {
+          id: "diabetes.yes.balanced.yes",
+          answerText: t('wizard.diabetes_yes_balanced.yes'),
+        },
+        {
+          id: "diabetes.yes.balanced.no",
+          answerText: t('wizard.diabetes_yes_balanced.no'),
+          isTerminal: true,
+          confirmationText: t('wizard.diabetes_yes_balanced.comment'),
+        },
+      ],
+    },
+    "cancer": {
+      questionText: t('wizard.cancer.q'),
+      prev: 'diabetes',
+      next: "anemia",
+      answers: [
+        {
+          id: "cancer.yesVirus",
+          answerText: t('wizard.cancer.yesVirus'),
+          isTerminal: true,
+          confirmationText: t('wizard.cancer.comment'),
+        },
+        {
+          id: "cancer.yesOther",
+          answerText: t('wizard.cancer.yesOther'),
+          next: "cancer.yesOther.beated",
+        },
+        {
+          id: "cancer.no",
+          answerText: t('wizard.cancer.no'),
+        },
+      ],
+    },
+    "cancer.yesOther.beated": {
+      questionText: t('wizard.cancer_yesOther_beated.q'),
+      prev: 'cancer',
+      next: "anemia",
+      answers: [
+        {
+          id: "cancer.yesOther.beated.yes",
+          answerText: t('wizard.cancer_yesOther_beated.yes'),
+        },
+        {
+          id: "cancer.yesOther.beated.no",
+          answerText: t('wizard.cancer_yesOther_beated.no'),
+          isTerminal: true,
+          confirmationText: t('wizard.cancer_yesOther_beated.comment'),
+        },
+      ],
+    },
+    "anemia": {
+      questionText: t('wizard.anemia.q'),
+      prev: 'cancer',
+      next: "transfusion",
+      answers: [
+        {
+          id: "anemia.yes",
+          answerText: t('wizard.anemia.yes'),
+          isTerminal: true,
+          confirmationText: t('wizard.anemia.comment'),
+        },
+        {
+          id: "anemia.no",
+          answerText: t('wizard.anemia.no'),
+        },
+      ],
+    },
+    "transfusion": {
+      questionText: t('wizard.transfusion.q'),
+      prev: 'anemia',
+      next: "miscProcedures",
+      answers: [
+        {
+          id: "transfusion.yesLately",
+          answerText: t('wizard.transfusion.yesLately'),
+          isTerminal: true,
+          confirmationText: t('wizard.transfusion.comment'),
+        },
+        {
+          id: "transfusion.yesNotLately",
+          answerText: t('wizard.transfusion.yesNotLately'),
+        },
+        {
+          id: "transfusion.no",
+          answerText: t('wizard.transfusion.no'),
+        },
+      ],
+    },
+    "miscProcedures": {
+      questionText:
+        t('wizard.miscProcedures.q'),
+      prev: 'transfusion',
+      next: "countriesLastYear",
+      answers: [
+        {
+          id: "miscProcedures.yesLately",
+          answerText: t('wizard.miscProcedures.yesLately'),
+          isTerminal: true,
+          confirmationText: t('wizard.miscProcedures.comment'),
+        },
+        {
+          id: "miscProcedures.yesNotLately",
+          answerText: t('wizard.miscProcedures.yesNotLately'),
+        },
+        {
+          id: "miscProcedures.no",
+          answerText: t('wizard.miscProcedures.no'),
+        },
+      ],
+    },
+    "countriesLastYear": {
+      descriptionList: true,
+      questionText: t('wizard.countriesLastYear.q'),
+      description: t('wizard.countriesLastYear.description'),
+      prev: 'miscProcedures',
+      next: "countriesAIDS",
+      answers: [
+        {
+          id: "countriesLastYear.yes",
+          answerText: t('wizard.countriesLastYear.yes'),
+          isTerminal: true,
+          confirmationText: t('wizard.countriesLastYear.comment'),
+        },
 
-      {
-        id: "countriesLastYear.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "countriesAIDS": {
-    questionText: "האם שהית או ביקרת באחת מהמדינות הבאות?",
-    description: ["איי בהאמה (Bahamas)", "אריתריאה (Eritrea)", "אתיופיה (Ethiopia)", "בוטסואנה (Botswana)", "בליז (Belize)", "ברבדוס (Barbados)", "ג'מייקה (Jamaica)", "דרום אפריקה (South Africa)", "הרפובליקה הדומיניקנית (Dominican Republic)", "טרינידד וטובגו (Trinidad and Tobago)", "כף ורדה (Cape Verde Islands)", "לסוטו (Lesotho)", "מאוריציוס (Mauritius)", "נמיביה (Namibia)", "סורינם (Suriname)", "תאילנד (Thailand)"],
-    prev: 'countriesLastYear',
-    next: "intercourse",
-    answers: [
-      {
-        id: "countriesAIDS.yesLately",
-        answerText: "כן, בשלושת החודשים האחרונים",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "countriesAIDS.yesNotLately",
-        answerText: "כן, לפני יותר משלושה חודשים",
-      },
-      {
-        id: "countriesAIDS.no",
-        answerText: "לא",
-      },
-    ],
-  },
-  "intercourse": {
-    questionText:
-      "האם קיימת יחסי מין בסיכון גבוה להידבקות במחלות אשר עלולות לעבור בעירוי (יחסים אנאליים ו/או בהשפעת סמים) עם שותף/ה חדש/ה או שותפים מרובים?",
-    prev: 'countriesAIDS',
-    isFinal: true,
-    answers: [
-      {
-        id: "intercourse.yesLately",
-        answerText: "כן, בשלושת החודשים האחרונים",
-        isTerminal: true,
-		confirmationText: "אין באפשרותך לתרום דם כעת.",
-      },
-      {
-        id: "intercourse.yesNotLately",
-        answerText: "כן, לפני יותר משלושה חודשים",
-      },
-      {
-        id: "intercourse.no",
-        answerText: "לא",
-      },
-    ],
-  },
+        {
+          id: "countriesLastYear.no",
+          answerText: t('wizard.countriesLastYear.no'),
+        },
+      ],
+    },
+    "countriesAIDS": {
+      descriptionList: true,
+      questionText: t('wizard.countriesAIDS.q'),
+      description: t('wizard.countriesAIDS.description'),
+      prev: 'countriesLastYear',
+      next: "intercourse",
+      answers: [
+        {
+          id: "countriesAIDS.yesLately",
+          answerText: t('wizard.countriesAIDS.yesLately'),
+          isTerminal: true,
+          confirmationText: t('wizard.countriesAIDS.comment'),
+        },
+        {
+          id: "countriesAIDS.yesNotLately",
+          answerText: t('wizard.countriesAIDS.yesNotLately'),
+        },
+        {
+          id: "countriesAIDS.no",
+          answerText: t('wizard.countriesAIDS.no'),
+        },
+      ],
+    },
+    "intercourse": {
+      questionText:
+        t('wizard.intercourse.q'),
+      prev: 'countriesAIDS',
+      isFinal: true,
+      answers: [
+        {
+          id: "intercourse.yesLately",
+          answerText: t('wizard.intercourse.yesLately'),
+          isTerminal: true,
+          confirmationText: t('wizard.intercourse.yesLatelyConfirmationText'),
+        },
+        {
+          id: "intercourse.yesNotLately",
+          answerText: t('wizard.intercourse.yesNotLately')
+        },
+        {
+          id: "intercourse.no",
+          answerText: t('wizard.intercourse.no'),
+        },
+      ],
+    }
+  }
 };
 
 export default formData
