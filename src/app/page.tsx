@@ -20,7 +20,7 @@ export default function Home() {
       </Head>
       <div className="h-full">
         <Toolbar />
-        <div className="flex flex-col items-center h-full justify-start mt-20">
+        <div className="flex flex-col items-center h-full justify-start mt-10">
           <Image src={logo_b} alt="" />
           <div className="text-2xl font-bold">{t('homepage.title')}</div>
           <div className="text-base font-normal mt-6 text-center">
@@ -28,11 +28,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="h-1/6 flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center py-6 px-4">
         <Link href="/screening" className="w-full">
           <Button
             block
-            className="h-12 bg-red-400 text-white rounded-3xl text-base"
+            className="h-12 bg-red-400 text-white rounded-xl text-base"
           >
             {t('homepage.canDonateBtn')}
           </Button>
@@ -40,7 +40,7 @@ export default function Home() {
         <Link href="/where" className="w-full mt-4">
           <Button
             block
-            className="h-12 border-red-400 text-red-400 rounded-3xl text-base"
+            className="h-12 border-red-400 text-red-400 rounded-xl text-base"
           >
             {t('homepage.whereDonateBtn')}
           </Button>

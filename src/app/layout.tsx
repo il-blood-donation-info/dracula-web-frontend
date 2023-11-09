@@ -32,7 +32,7 @@ export default function RootLayout({
 
   return (
     <html lang="he" dir={direction} className="h-full">
-      <body className={`${heebo.className} h-full px-4 py-6`}>
+      <body className={`${heebo.className} h-full`}>
         <GlobalState>
           {children}
           <div className="text-center mt-5">

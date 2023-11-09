@@ -31,8 +31,8 @@ export default function Screening() {
         {status === ScreeningConclusion.Approved && (
           <div className="h-full flex flex-col justify-between items-center">
             <HeaderVisual visual={screeningApproved} />
-            <div className="mt-16 h-full flex flex-col justify-center">
-              <div className="text-lg text-center font-bold ">
+            <div className="mt-16 h-full flex flex-col justify-center px-4">
+              <div className="text-xl text-center font-bold ">
                 {t('conclusion.approve.title')}
               </div>
               <div className="mt-6">{t('conclusion.approve.description')}</div>
@@ -45,18 +45,20 @@ export default function Screening() {
                   ))}
               </div>
             </div>
-            <Link href="/where" className="w-full">
-              <Button className="h-12 bg-red-400 text-white rounded-3xl text-base w-full mt-8">
-                {t('conclusion.approve.locationsLink')}
-              </Button>
-            </Link>
+            <div className="py-6 px-4 w-full">
+              <Link href="/where" className="w-full">
+                <Button className="h-12 bg-red-400 text-white rounded-xl text-base w-full mt-8">
+                  {t('conclusion.approve.locationsLink')}
+                </Button>
+              </Link>
+            </div>
           </div>
         )}
         {status === ScreeningConclusion.Rejected && (
           <div className="h-full flex flex-col justify-between items-center">
             <HeaderVisual visual={screeningRejected} />
-            <div className="mt-16 h-full flex flex-col justify-center">
-              <div className="text-lg text-center font-bold ">
+            <div className="mt-16 h-full flex flex-col justify-center mx-4">
+              <div className="text-xl text-center font-bold ">
                 {t('conclusion.reject.title')}
               </div>
               <div>{t('conclusion.reject.description')}</div>
@@ -69,18 +71,20 @@ export default function Screening() {
                   ))}
               </div>
             </div>
-            <Link href="/" className="w-full">
-              <Button block className="h-12 rounded-3xl text-base mt-4">
-                {t('conclusion.homepageBtn')}
-              </Button>
-            </Link>
+            <div className="py-6 px-4 w-full">
+              <Link href="/" className="w-full">
+                <Button block className="h-12 bg-red-400 text-white rounded-xl text-base mt-4">
+                  {t('conclusion.homepageBtn')}
+                </Button>
+              </Link>
+            </div>
           </div>
         )}
         {isEmpty(state.screening.conclusion) && (
-          <div className="h-1/6 flex flex-col justify-center items-center">
+          <div className="h-1/6 flex flex-col justify-center items-center px-4 py-6">
             <div className="text-xl">{t('conclusion.didntFinish')}</div>
             <Link href="/screening" className="w-full">
-              <Button className="h-12 bg-red-400 text-white rounded-3xl text-base w-full mt-8">
+              <Button className="h-12 bg-red-400 text-white rounded-xl text-base w-full mt-8">
                 {t('conclusion.letsStart')}
               </Button>
             </Link>

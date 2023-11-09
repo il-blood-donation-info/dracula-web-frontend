@@ -25,20 +25,22 @@ function Screening() {
         <title>{t('screening.title')}</title>
       </Head>
       <div className="flex flex-col justify-between h-full">
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col h-full justify-start">
           <HeaderVisual visual={formImg} />
-          <div className="text-lg text-center font-bold mt-16">
-            {t('screening.title')}
+          <div className="px-6">
+            <div className="text-xl text-center font-bold mt-16">
+              {t('screening.title')}
+            </div>
+            <p className="mt-6">{t('screening.description')}</p>
+            <p className="mt-6">{t('screening.aboutForm')}</p>
           </div>
-          <p className="mt-6">{t('screening.description')}</p>
-          <p className="mt-6">{t('screening.aboutForm')}</p>
         </div>
-        <div>
+        <div className='px-4 py-6'>
           {false ? (
             <Link href="/screening/questions" className="w-full">
               <Button
                 block
-                className="h-12 bg-red-400 text-white rounded-3xl text-base"
+                className="h-12 bg-red-400 text-white rounded-xl text-base"
               >
                 {t('screening.startBtn')}
               </Button>
@@ -50,7 +52,7 @@ function Screening() {
                   <Link href="/screening/questions" className="w-full">
                     <Button
                       block
-                      className="h-12 bg-red-400 text-white rounded-3xl text-base"
+                      className="h-12 bg-red-400 text-white rounded-xl text-base"
                     >
                       {t('screening.continueBtn')}
                     </Button>
@@ -59,7 +61,7 @@ function Screening() {
                     <Button
                       onClick={resetScreening}
                       block
-                      className="h-12 rounded-3xl text-base mt-4"
+                      className="h-12 rounded-xl text-base mt-4"
                     >
                       {t('screening.restartBtn')}
                     </Button>
@@ -69,7 +71,7 @@ function Screening() {
                 <Link href="/screening/questions" className="w-full">
                   <Button
                     block
-                    className="h-12 bg-red-400 text-white rounded-3xl text-base mt-4"
+                    className="h-12 bg-red-400 text-white rounded-xl text-base mt-4"
                   >
                     {t('screening.startBtn')}
                   </Button>

@@ -23,11 +23,11 @@ import { RightOutlined } from '@ant-design/icons'
 import { Answer } from '@/app/types/screening'
 
 const firstQuestionId = findKey(
-  formData(() => {}),
+  formData(() => { }),
   'isFirst'
 )
 const topQuestionsCount = size(
-  filter(keys(formData(() => {})), (key) => !key.includes('.'))
+  filter(keys(formData(() => { })), (key) => !key.includes('.'))
 )
 
 export default function Screening() {
@@ -115,27 +115,30 @@ export default function Screening() {
         <title>האם אני זכאי לתרום דם?</title>
       </Head>
       <div className="flex flex-col justify-between h-full">
-        <div>
-          <div className="flex justify-between items-center">
+        <div className="px-4 w-full">
+          <div className="flex justify-between items-center py-6">
             <Button
               disabled={!questionData.prev}
               onClick={onPrevClicked}
               shape="circle"
               icon={<RightOutlined />}
               size="small"
-              className="ml-2 mb-1"
+              className="ml-3 mt-1"
+              style={{ color: 'white', backgroundColor: 'black' }}
             />
             <Progress
+              size="default"
               showInfo={false}
+              className="mx-4 mt-2"
               status="exception"
               percent={Math.round(
                 (size(filter(keys(answers), (key) => !key.includes('.'))) /
                   topQuestionsCount) *
-                  100
+                100
               )}
             />
             <Link href="/">
-              <Button className="text-black" type="link">
+              <Button className="text-black text-base" type="link">
                 {t('wizard.finishBtn')}
               </Button>
             </Link>
@@ -143,7 +146,7 @@ export default function Screening() {
           <p className="text-lg">{questionData.questionText}</p>
 
           {questionData.descriptionList ? (
-            <Card className="text-base bg-gray-200 overflow-y-scroll max-h-72 w-full">
+            <Card className="text-base bg-gray-200 overflow-y-scroll max-h-40 w-full">
               {questionData.description.split(',').map((item: string) => (
                 <div key={item}>{item}</div>
               ))}
@@ -163,7 +166,7 @@ export default function Screening() {
                   <Button
                     key={id}
                     onClick={() => onAnswerSelected(id)}
-                    className={`w-full h-16 text-base whitespace-normal`}
+                    className={`w-full h-20 text-base whitespace-normal border-2 shadow-lg rounded-lg`}
                     style={{
                       borderColor: isSelectedAnswer ? 'red' : '',
                       color: isSelectedAnswer ? 'black' : '',
@@ -181,16 +184,18 @@ export default function Screening() {
             )}
           </div>
         </div>
-        {!isEmpty(answerConfirmationStage) && (
-          <Button
-            onClick={onConfirmationClicked}
-            className="h-12 bg-red-400 text-white rounded-3xl text-base w-full ml-4 "
-          >
-            {answerConfirmationStage.isTerminal
-              ? t('wizard.finishBtn')
-              : t('wizard.nextQ')}
-          </Button>
-        )}
+        <div className="px-4 py-6">
+          {!isEmpty(answerConfirmationStage) && (
+            <Button
+              onClick={onConfirmationClicked}
+              className="h-12 bg-red-400 text-white rounded-xl text-base w-full ml-4 "
+            >
+              {answerConfirmationStage.isTerminal
+                ? t('wizard.finishBtn')
+                : t('wizard.nextQ')}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   )

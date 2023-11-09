@@ -15,14 +15,7 @@ console.log(`\
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	async rewrites() {
-		return [
-			{
-				source: '/api/:path*',
-				destination: `${process.env.PROXY_TO_URL}/:path*`,
-			},
-		]
-	},
+	output: 'export',
 }
 
 module.exports = nextConfig
