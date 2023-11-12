@@ -3,6 +3,7 @@
         "homepage": {
             "title": "Blood donor recruitment",
             "subtitle": "All information on donation points, instructions for donors and status updates in one place.",
+            "register": "Register",
             "canDonateBtn": "Can I donate?",
             "whereDonateBtn": "Where do I donate?"
         },
