@@ -36,6 +36,7 @@ export default function RootLayout({
         <GlobalState>
           {children}
           <div className="text-center mt-5">
+            <button onClick={() => changeLanguageClicked('fr')}>FR</button> /{' '}
             <button onClick={() => changeLanguageClicked('en')}>EN</button> /{' '}
             <button onClick={() => changeLanguageClicked('he')}>עב</button>
           </div>
