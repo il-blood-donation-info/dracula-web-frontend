@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import logo from '../../../images/logo_min.svg'
 
@@ -7,8 +8,10 @@ import logo from '../../../images/logo_min.svg'
 
 export default function Toolbar() {
       return (
-            <div>
-                  <Image src={logo} alt="" />
+            <div className="px-4">
+                  <Link href="/" className="w-full">
+                        <Image src={logo} alt="" />
+                  </Link>
             </div>
       )
 }

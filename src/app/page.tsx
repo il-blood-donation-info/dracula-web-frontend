@@ -45,6 +45,14 @@ export default function Home() {
             {t('homepage.whereDonateBtn')}
           </Button>
         </Link>
+        <Link href="https://www.dam.org.il/signup/" className="w-full mt-4">
+          <Button
+            block
+            className="h-12 border-red-400 text-red-400 rounded-xl text-base"
+          >
+            {t('homepage.register')}
+          </Button>
+        </Link>
       </div>
     </div>
   )

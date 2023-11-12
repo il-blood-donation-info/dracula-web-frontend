@@ -20,7 +20,7 @@ type scheduleDTO = {
   station_id: number
 }
 
-const adaptToLocations = (incomingData: scheduleDTO[]) : Location[] => {
+const adaptToLocations = (incomingData: scheduleDTO[]): Location[] => {
   return incomingData.map((data) => {
     return {
       id: `${data.station_id}_${data.address}_${data.date}_${data.open_time}_${data.close_time}`,
@@ -60,30 +60,30 @@ export default function Where() {
         <title>נקודות התרמה</title>
       </Head>
       <Toolbar />
-      <div>
+      <div className="px-4 pb-6">
         <div className="mb-3">
           <MainTitle>
             חיפוש נקודת התרמה
           </MainTitle>
         </div>
-        <AutoComplete 
+        <AutoComplete
           options={uniq(locations.map((loc => loc.city)))}
-          onSelectOption={(option: string) => { 
-                setFilteredLocations(locations.filter((loc) => loc.city.includes(option)))
-              }
-            }
+          onSelectOption={(option: string) => {
+            setFilteredLocations(locations.filter((loc) => loc.city.includes(option)))
+          }
+          }
           placeholder="באיזה עיר אני רוצה לתרום?"
-          />
+        />
         {filteredLocations.length > 0 ? (<div className="flex flex-col gap-2">
           {
             filteredLocations.map((location) => (
               <LocationBox key={location.id} location={location} />
-              ))
-            }
+            ))
+          }
         </div>) : (
           <div className="flex flex-col items-center pt-12">
             <div>
-              כרגע לא נמצאו נקודות בעיר זו, 
+              כרגע לא נמצאו נקודות בעיר זו,
             </div>
             <div>
               נסו לחפש בעיר אחרת.
