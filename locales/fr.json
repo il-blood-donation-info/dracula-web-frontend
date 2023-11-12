@@ -1,0 +1,195 @@
+{
+    "translation": {
+        "homepage": {
+            "title": "Donner son sang en Israel",
+            "subtitle": "Toutes les informations sur les points de don et leur status, et les instructions pour les donneurs, en un seul endroit.",
+            "register": "S'inscrire",
+            "canDonateBtn": "Puis-je donner?",
+            "whereDonateBtn": "Où puis-je donner?"
+        },
+        "screening": {
+            "title": "Simulation de tri pour le don de sang",
+            "description": "Le but de la simulation est de s'assurer que vous répondez aux critères de l'MADA pour le don de sang. Si vous êtes jugé apte, il est recommandé de vous rendre dans un centre de don, où vous devrez remplir une déclaration de santé et subir un autre test (pression artérielle et hémoglobine).",
+            "aboutForm": "Ce formulaire est basé sur le formulaire de MADA et il sera le facteur qui déterminera finalement votre aptitude au don de sang.",
+            "startBtn": "Commencer",
+            "restartBtn": "Redémarrer",
+            "continueBtn": "Continuer"
+        },
+        "wizard": {
+            "finishBtn": "Terminer",
+            "nextQ": "Question suivante",
+            "recentDonation": {
+                "q": "Avez-vous donné votre sang au cours des trois derniers mois?",
+                "yes": "Oui",
+                "no": "Non",
+                "comment": "Le minimum entre les dons de sang selon les critères de MADA est d'au moins trois mois. Vous ne pouvez pas donner de sang maintenant."
+            },
+            "age": {
+                "q": "Quel est votre âge?",
+                "under17": "Moins de 17 ans",
+                "under17comment": "Il n'est pas possible de donner du sang avant l'âge de 17 ans.",
+                "17to18": "17 à 18 ans",
+                "17to18comment": "Vous pouvez donner votre sang, mais une signature d'un parent/tuteur sera nécessaire. Vous pouvez télécharger le formulaire approprié via le lien suivant : https://www.mdais.org/media/3384/mda-044-7905.pdf",
+                "18to59": "18 à 59 ans",
+                "60up": "60 ans et plus",
+                "60upComment": "À partir de 60 ans, s'il s'agit du premier don, l'approbation d'un médecin est nécessaire. À partir de 65 ans, l'approbation d'un médecin est nécessaire avant tout don."
+            },
+            "gender": {
+                "q": "Quel est votre genre?",
+                "male": "Homme",
+                "female": "Femme"
+            },
+            "pregnant": {
+                "q": "Êtes-vous enceinte actuellement?",
+                "yes": "Oui",
+                "comment": "Il n'est pas possible de donner du sang pendant une grossesse.",
+                "no": "Non"
+            },
+            "birth": {
+                "q": "Avez-vous accouché au cours des six derniers mois?",
+                "yes": "Oui",
+                "comment": "Il n'est pas possible de donner du sang dans les six mois après un accouchement.",
+                "no": "Non"
+            },
+            "conditions": {
+                "q": "Souffrez-vous de l'une des conditions suivantes?",
+                "description": "- Problème cardiaque/troubles du rythme cardiaque nécessitant un traitement médicamenteux<br/>- Hémophilie/maladie épileptique traitée par un traitement médicamenteux<br/>- Expérience d'une crise d'épilepsie au cours des 5 dernières années",
+                "yes": "Oui",
+                "comment": "Vous ne pouvez pas donner votre sang: Donner votre sang pourrait mettre votre santé en danger.",
+                "no": "Non"
+            },
+            "antibiotics": {
+                "q": "Avez-vous été traité avec des antibiotiques au cours du dernier mois?",
+                "yesAndHealed": "Oui, j'ai terminé le traitement et je me suis rétabli de la maladie",
+                "yesAndNotHealed": "Oui, je n'ai pas encore terminé le traitement et je prends toujours les antibiotiques / Je ne me suis pas rétabli",
+                "comment": "Vous ne pouvez pas donner maintenant, vous devez terminer votre traitement avant de donner votre sang.",
+                "no": "Non"
+            },
+            "teeth": {
+                "q": "Avez-vous eu un traitement dentaire récemment?",
+                "description": "- Dentiste au cours des dernières 24 heures<br/>- Traitement du canal radiculaire/extraction d'une dent au cours de la dernière semaine<br/>- Implant dentaire au cours du dernier mois?",
+                "yes": "Oui",
+                "comment": "Il n'est pas possible de donner du sang après un traitement dentaire.",
+                "no": "Non"
+            },
+            "hepatitis": {
+                "q": "Avez-vous ou avez-vous eu par le passé l'hépatite (jaunisse)?",
+                "A": "Oui, type A",
+                "BC": "Oui, type B ou C",
+                "NA": "Oui, pour une raison inconnue",
+                "no": "Non"
+            },
+            "hepatitis_A_notRecent": {
+                "q": "Avez-vous guéri de l'hépatite, et une année s'est-elle écoulée depuis la date de guérison?",
+                "yes": "Oui",
+                "no": "Non",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant."
+            },
+            "hepatitis_NA_notRecent": {
+                "q": "Avez-vous guéri de l'hépatite, et deux années se sont-elles écoulées depuis la date de guérison?",
+                "yes": "Oui",
+                "no": "Non",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant."
+            },
+            "vaccine": {
+                "q": "Avez-vous reçu un vaccin récemment?",
+                "description": "Avez-vous reçu un vaccin contre l'une des maladies suivantes au cours du dernier mois : rubéole, rougeole, oreillons, varicelle, fièvre jaune?",
+                "yes": "Oui",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant.",
+                "no": "Non"
+            },
+            "asthma": {
+                "q": "Avez-vous de l'asthme?",
+                "yes": "Oui",
+                "no": "Non"
+            },
+            "asthma_yes_well": {
+                "q": "Vous sentez-vous bien, sans crise au cours de la dernière semaine et sans prendre de comprimés de stéroïdes?",
+                "yes": "Oui",
+                "no": "Non",
+                "comment": "Vous ne pouvez pas donner du sang maintenant."
+            },
+            "diabetes": {
+                "q": "Êtes-vous diabétique?",
+                "yes": "Oui",
+                "no": "Non"
+            },
+            "diabetes_yes_balanced": {
+                "q": "Votre diabète est-il équilibré? (par régime alimentaire ou médicaments)",
+                "yes": "Oui",
+                "no": "Déséquilibré / traité par l'insuline",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant."
+            },
+            "cancer": {
+                "q": "Avez-vous ou avez-vous eu une maladie maligne par le passé?",
+                "yesVirus": "Oui, maladie ou antécédents de malignité hématologique ou virale (leucémie, lymphome, maladie de Hodgkin).",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant.",
+                "yesOther": "Oui, autres formes.",
+                "no": "Non"
+            },
+            "cancer_yesOther_beated": {
+                "q": "Cela fait-il 5 ans depuis la fin du traitement et la guérison complète?",
+                "yes": "Oui",
+                "no": "Non",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant."
+            },
+            "anemia": {
+                "q": "Avez-vous de l'anémie ou une tendance à saigner?",
+                "yes": "Oui",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant.",
+                "no": "Non"
+            },
+            "transfusion": {
+                "q": "Avez-vous reçu une transfusion sanguine ou des composants sanguins?",
+                "yesLately": "Oui, au cours des 4 derniers mois",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant.",
+                "yesNotLately": "Oui, il y a plus de 4 mois",
+                "no": "Non"
+            },
+            "miscProcedures": {
+                "q": "Avez-vous eu un tatouage, un piercing, un maquillage permanent ou une endoscopie avec biopsie?",
+                "yesLately": "Oui, au cours des 4 derniers mois",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant.",
+                "yesNotLately": "Oui, il y a plus de 4 mois",
+                "no": "Non"
+            },
+            "countriesLastYear": {
+                "q": "Avez-vous visité l'un des pays suivants au cours de la dernière année?",
+                "description": "Afghanistan, Afrique du Sud, Angola, Arabie saoudite, Belize, Bénin, Birmanie, Bolivie, Botswana, Brésil, Burkina Faso, Burundi, Cambodge, Cameroun, Colombie, Comores, Congo-Brazzaville, Congo-Kinshasa, Corée du Nord, Corée du Sud, Côte d'Ivoire, Djibouti, Équateur, Érythrée, Éthiopie, Gabon, Gambie, Ghana, Guinée, Guinée équatoriale, Guinée-Bissau, Guyane, Guyane française, Haïti, Honduras, Îles Salomon, Inde, Indonésie, Laos, Libéria, Madagascar, Malaisie, Malawi, Mali, Mauritanie, Mexique, Mozambique, Namibie, Népal, Nicaragua, Niger, Nigéria, Ouganda, Pakistan, Panama, Papouasie-Nouvelle-Guinée, Pérou, Philippines, République centrafricaine, République démocratique du Congo, République dominicaine, Rwanda, Sao Tomé-et-Principe, Sénégal, Sierra Leone, Somalie, Soudan, Soudan du Sud, Sri Lanka, Suriname, Swaziland, Tanzanie, Tchad, Thaïlande, Timor-Leste, Togo, Venezuela, Vietnam, Yémen, Zambie, Zimbabwe, Zanzibar",
+                "yes": "Oui",
+                "no": "Non",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant."
+            },
+            "countriesAIDS": {
+                "q": "Avez-vous séjourné ou visité l'un des pays suivants?",
+                "description": "Afrique du Sud, Bahamas, Barbade, Belize, Botswana, Cap-Vert, Érythrée, Éthiopie, Jamaïque, Lesotho, Maurice, Namibie, République dominicaine, Suriname, Thaïlande, Trinité-et-Tobago",
+                "yesLately": "Oui, au cours des trois derniers mois",
+                "comment": "Vous ne pouvez pas donner votre sang maintenant.",
+                "yesNotLately": "Oui, il y a plus de trois mois",
+                "no": "Non"
+            },
+            "intercourse": {
+                "q": "Avez vous eu des rapports sexuels avec un risque élevé d'infection par des maladies pouvant être transmises par transfusion (rapports anaux et/ou sous l'influence de drogues) avec un nouveau partenaire ou plusieurs partenaires?",
+                "yesLately": "Oui, au cours des trois derniers mois",
+                "yesLatelyConfirmationText": "Vous ne pouvez pas donner votre sang maintenant.",
+                "yesNotLately": "Oui, il y a plus de trois mois",
+                "no": "Non"
+            }
+        },
+        "conclusion": {
+            "title": "Résumé du questionnaire médical",
+            "homepageBtn": "Retour à la page d'accueil",
+            "didntFinish": "Vous n'avez pas encore rempli le questionnaire",
+            "letsStart": "Commençons?",
+            "approve": {
+                "title": "Vous pouvez donner votre sang!",
+                "description": "Sur la base des données que vous avez fournies, vous êtes éligible pour donner votre sang. Vous pouvez vous rendre à la station de don la plus proche, où l'on vous demandera de remplir des formulaires et de passer des contrôles supplémentaires pour le don.",
+                "locationsLink": "Où donner?"
+            },
+            "reject": {
+                "title": "Il n'est actuellement pas possible de donner votre sang",
+                "description": "Merci pour votre volonté de donner et de sauver des vies. Sur la base des données que vous avez fournies, vous n'êtes actuellement pas éligible pour donner votre sang."
+            }
+        }
+    }
+}
