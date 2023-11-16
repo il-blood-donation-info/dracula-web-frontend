@@ -2,23 +2,15 @@
 
 import Head from 'next/head'
 
-import LocationBox from './components/location-box'
+import LocationBox from '../common/components/location-box/location-box'
 import Toolbar from '../common/components/toolbar/toolbar'
-import { Location } from './types'
+import { Location } from '../types/location'
 import { MainTitle } from '../common/components/titles/main-title'
 import { AutoComplete } from '../common/components/inputs/auto-complete'
 import { uniq } from 'lodash'
 import { useEffect, useState } from 'react'
-
-type scheduleDTO = {
-  address: string,
-  close_time: string,
-  date: string,
-  is_open: boolean,
-  name: string
-  open_time: string
-  station_id: number
-}
+import { getSchedule } from '../api/api'
+import { scheduleDTO } from '../types/schedule-dto'
 
 const adaptToLocations = (incomingData: scheduleDTO[]): Location[] => {
   return incomingData.map((data) => {
@@ -42,8 +34,7 @@ export default function Where() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/schedule`)
-        const fetchLocation = await response.json()
+        const fetchLocation = await getSchedule()
         const locations = adaptToLocations(fetchLocation)
         setLocations(locations)
         setFilteredLocations(locations)

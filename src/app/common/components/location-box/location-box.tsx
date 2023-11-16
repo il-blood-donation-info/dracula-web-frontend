@@ -1,14 +1,15 @@
-import { Location } from "../types"
-import { CardTitle } from '../../common/components/titles/card-title'
+import { Location } from "../../../types/location"
+import { CardTitle } from '../titles/card-title'
 import { format, getDay, isToday, isTomorrow } from "date-fns"
-import clock from '../../images/clock.svg'
-import markerLocation from '../../images/marker_location.svg'
+import markerLocation from '../../../images/marker_location.svg'
 import Image from "next/image"
 import Link from "next/link"
-import BulletSVG from "./bullet-svg"
+import clock from '../../../images/clock.svg'
+import BulletSVG from "../bullet-svg"
 
 type Props = {
   location: Location
+  onClick: () => {}
 }
 
 const displayDay = {
@@ -21,7 +22,7 @@ const displayDay = {
   6: 'שבת',
 }
 
-export default function LocationBox({ location: { openTime, closeTime, name, address, isOpen } }: Props) {
+export default function LocationBox({ onClick, location: { openTime, closeTime, name, address, isOpen } }: Props) {
   const isOpenToday = isToday(openTime)
   const isOpenTomorrow = isTomorrow(openTime)
   const openDay = displayDay[getDay(openTime)]
@@ -30,6 +31,7 @@ export default function LocationBox({ location: { openTime, closeTime, name, add
   return (
     <div
       className="rounded-xl border-slate-200 border p-2"
+      onClick={onClick}
     >
       <div className="flex gap-3">
         <div style={{ width: '20%' }}>
