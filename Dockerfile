@@ -2,6 +2,8 @@ FROM node:20-alpine as builder
 
 WORKDIR /app
 
+ENV NEXT_PUBLIC_API_URL https://dracula.betterw8.com:10443
+
 COPY . .
 
 RUN yarn
