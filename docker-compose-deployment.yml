@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nginx:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    env_file:
+      - .env.ec2
+    volumes:
+      - /ssl:/ssl
+    ports:
+      - "443:443"
+    restart: always
