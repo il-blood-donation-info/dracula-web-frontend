@@ -4,8 +4,8 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    env_file:
-      - .env.ec2
+        args:
+        - NEXT_PUBLIC_API_URL="https://dracula.betterw8.com:10443"
     volumes:
       - /ssl:/ssl
     ports:
