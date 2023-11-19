@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nginx:
+    build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+        - NEXT_PUBLIC_API_URL="https://dracula.betterw8.com:10443"
+    volumes:
+      - /ssl:/ssl
+    ports:
+      - "443:443"
+    restart: always
